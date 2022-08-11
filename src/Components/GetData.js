@@ -2,7 +2,9 @@ import React from 'react'
 
 function GetData() {
   return (
-    <div>GetData</div>
+    <div>GetData
+      Nico test
+    </div>
   )
 }
 
