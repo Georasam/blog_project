@@ -3,7 +3,7 @@ import React from 'react'
 function GetData() {
   return (
     <div>GetData
-      Nico test
+      George test
     </div>
   )
 }
