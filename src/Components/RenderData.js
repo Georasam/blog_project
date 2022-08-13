@@ -12,9 +12,9 @@ return(
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">{entry.fields.title}</h5>
-         <img src=''/>
+         <img src=""/>
         <p className="card-text">HUNTER OF THE NIGHT</p>
-        <Button href="#" variant='success' className="btn btn-primary">watch movie</Button>
+        <Button href="#" variant='success' className="btn btn-primary">Reade more</Button>
       </div>
     </div>
   </div>
