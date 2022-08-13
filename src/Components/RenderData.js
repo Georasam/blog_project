@@ -17,7 +17,7 @@ return(
         <p className="card-text">{entry.fields.richtext}</p>
         <p className="card-Author">{entry.fields.author}</p>
         <p className="card-publisher">{entry.fields.publisher}</p>
-        <Button href="#" variant='success' className="btn btn-primary">watch movie</Button>
+        <Button href="#" variant='success' className="btn btn-primary">Read more...</Button>
 
       </div>
     </div>
