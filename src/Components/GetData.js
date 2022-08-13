@@ -1,6 +1,7 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
 import RenderData from './RenderData'
+import { Button } from 'react-bootstrap';
 function GetData() {
   const [entries, setEntries] = useState(false)
 
@@ -64,6 +65,10 @@ function GetData() {
       
 
       <RenderData/>
+
+      <Button variant="success">HEYYY</Button>
+
+
 
     </div>
   )
