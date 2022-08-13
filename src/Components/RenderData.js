@@ -13,7 +13,7 @@ return(
       <div className="card-body">
         <h5 className="card-title">{entry.fields.title}</h5>
 
-         <img src=''/>
+         <img src='' alt=""/>
         <p className="card-text">{entry.fields.richtext}</p>
         <p className="card-Author">{entry.fields.author}</p>
         <p className="card-publisher">{entry.fields.publisher}</p>
