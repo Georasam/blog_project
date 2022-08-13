@@ -37,7 +37,7 @@ function GetData() {
 
 
 
-      <RenderData/>
+      
 
       <Button variant="success">HEYYY</Button>
 
