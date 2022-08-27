@@ -2,6 +2,8 @@ import React from 'react'
 import {useEffect, useState} from 'react'
 import RenderData from './RenderData'
 import NavScroll from './NavScroll'
+import Footer from './Footer'
+
 
 function GetData() {
   const [entries, setEntries] = useState(false)
@@ -41,6 +43,7 @@ function GetData() {
       <h1 className='title_name'>BOARD GAME</h1>
 
       <NavScroll />
+      
 
 
     
@@ -55,7 +58,7 @@ function GetData() {
       
 
   
-
+      <Footer />
 
 
     </div>
