@@ -15,7 +15,7 @@ function GetData() {
   },[])
 
   async function loadAssets() {
-    const url = `https://cdn.contentful.com/spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/assets?access_token=${process.env.REACT_APP_ACCESS_TOKEN}`
+    const url = `https://cdn.contentful.com//spaces/zyzbzt6ky8e9/environments/master/entries?access_token=4blj6Cc3cHF1hCk28Xg7798rycm3ETNF2vDl6teXvuw&metadata.tags.sys.id[in]=boardGames`
     const response = await fetch(url)
     const result = await response.json()
     console.log('Assets:',result)
@@ -40,6 +40,7 @@ function GetData() {
   
   return (
     <div>
+
       <h1 className='title_name'>BOARD GAME</h1>
 
       <NavScroll />
@@ -50,16 +51,16 @@ function GetData() {
       
 
 
-      <RenderData entries={entries}/>
-
-
-
 
       
+
 
   
       <Footer />
 
+
+
+      <RenderData entries={entries}/>
 
     </div>
   )
