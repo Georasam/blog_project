@@ -34,28 +34,8 @@ function GetData() {
       <h1 className='title_name'>FANTASIA</h1>
       <h4 className="title_description">The Board Game Blog</h4>
       <NavScroll />
-
-      
-
-
-    
-      
-
-
-
-      
-
-
-  
-      <Footer />
-
-
-
-      
-
-
       <RenderData entries={entries} assets={assets}/>
-
+      <Footer />
     </div>
   )
 }
