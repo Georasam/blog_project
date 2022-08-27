@@ -1,14 +1,19 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 function RenderData({entries}) {
     console.log(entries )
   return (
     
-        
-      <div className="row">
-       <div>{ entries.map((entry,index)=>{
+    <Container >
+
+      <Row className="row">
+       { entries.map((entry,index)=>{
 return(
-<div key={index} className="col-sm-6">
+<Col key={index} className="col-sm-6">
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">{entry.fields.title}</h5>
@@ -21,13 +26,14 @@ return(
 
       </div>
     </div>
-  </div>
+  </Col>
 )
 }) }
-  
-  </div> 
-</div>
-    
+
+   
+</Row>
+</Container>
+
   )
 }
 
