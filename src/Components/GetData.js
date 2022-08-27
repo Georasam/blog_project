@@ -1,6 +1,7 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
 import RenderData from './RenderData'
+import NavScroll from './NavScroll'
 
 function GetData() {
   const [entries, setEntries] = useState(false)
@@ -37,7 +38,9 @@ function GetData() {
   
   return (
     <div>
-      <h1>DATA FETCHED</h1>
+      <h1 className='title_name'>BOARD GAME</h1>
+
+      <NavScroll />
 
 
     
