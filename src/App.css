@@ -1,10 +1,14 @@
-/* .App {
+.App {
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.image_size {
+  width: 200px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -35,5 +39,5 @@
   to {
     transform: rotate(360deg);
   }
+
 }
- */
