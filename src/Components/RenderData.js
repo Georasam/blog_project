@@ -21,8 +21,8 @@ function RenderData({entries, assets}) {
        <div className="row">{entries.map((entry,index)=>{
          const imageUrl = _getAssetUrl(entry.fields.image.sys.id)
           return(
-          <div key={index} className="col-sm-4">
-              <div className="card">
+          <Col md={4}key={index} >
+              <div className="card main-back">
                 <div className="card-body">
                   <h5 className="card-title">{entry.fields.title}</h5>
                   <img className="image_size" src={imageUrl} alt="not loading"></img>
@@ -32,7 +32,7 @@ function RenderData({entries, assets}) {
                   <Button href="#" variant='success' className="btn btn-primary"><Link to={`/fantasiaStartpage/${entry.fields.title.toLowerCase()}`}>Read more...</Link></Button>
                 </div>
               </div>
-            </div>
+            </Col>
           )
           }) }
         </div> 
