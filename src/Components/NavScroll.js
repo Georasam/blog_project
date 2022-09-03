@@ -4,8 +4,16 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function NavScroll() {
+function NavScroll({search,setSearchQuery, searchQuery}) {
+  const [handler, setHandler] = useState("")
+  const inputHandler = (event)=>{
+    setSearchQuery(event.target.value)
+    console.log(searchQuery)
+    
+      }
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -17,7 +25,7 @@ function NavScroll() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="">About us</Nav.Link>
             <NavDropdown title="Genre" id="navbarScrollingDropdown">
               <NavDropdown.Item href="">Test 1</NavDropdown.Item>
@@ -36,8 +44,11 @@ function NavScroll() {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              onChange={inputHandler}
             />
-            <Button variant="outline-success">Search</Button>
+            <Link to="/search">
+            <Button  onClick={search} variant="outline-success">Search</Button>
+            </Link>
           </Form>
         </Navbar.Collapse>
       </Container>

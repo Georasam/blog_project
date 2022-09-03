@@ -1,7 +1,11 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import'./renderData.css'
+
 
 function RenderData({entries, assets}) {
     //console.log(entries )
@@ -21,8 +25,8 @@ function RenderData({entries, assets}) {
        <div className="row">{entries.map((entry,index)=>{
          const imageUrl = _getAssetUrl(entry.fields.image.sys.id)
           return(
-          <div key={index} className="col-sm-4">
-              <div className="card">
+          <Col md={4}key={index} >
+              <div className="card main-back" style={{height: "100%"}}>
                 <div className="card-body">
                   <h5 className="card-title">{entry.fields.title}</h5>
                   <img className="image_size" src={imageUrl} alt="not loading"></img>
@@ -32,14 +36,15 @@ function RenderData({entries, assets}) {
                   <Button href="#" variant='success' className="btn btn-primary"><Link to={`/fantasiaStartpage/${entry.fields.title.toLowerCase()}`}>Read more...</Link></Button>
                 </div>
               </div>
-            </div>
+            </Col>
           )
           }) }
         </div> 
       </div>
-      <Footer />
+      
     </div>
     
+
   )
 }
 
