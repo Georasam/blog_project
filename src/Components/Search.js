@@ -1,8 +1,9 @@
 import React from 'react'
-
-function Search({searchResults}) {
+import { Link } from 'react-router-dom';
+import Highlighter from "react-highlight-words";
+function Search({searchResults, searchQuery}) {
     
-    console.log(searchResults)
+    console.log(searchQuery)
     if(!searchResults){
         return (
             <p>Searching ...</p>
@@ -18,25 +19,26 @@ function Search({searchResults}) {
 
   return (
     <div>
-       <div>
-       <div className="row">{searchResults.map((searchResult,index)=>{
+       
+       <ul className="search-row">{searchResults.map((searchResult,index)=>{
          
           return(
-          <div md={4}key={index} >
-              <div className="card main-back">
-                <div className="card-body">
-                  <h5 className="card-title">{searchResult.fields.title}</h5>   
-                  <p className="card-text">{searchResult.fields.richtext}</p>
-                  <p className="card-Author">Author(s): {searchResult.fields.author}</p>
-                  <p className="card-publisher"> Publisher: {searchResult.fields.publisher}</p>
+          <li className='li-search' md={4}key={index} >
+              <div  className=" search-back">
+                <div className="search-body">
+                  
+                  <Highlighter autoEscape={true} searchWords={[searchQuery]} className="search-text-title" textToHighlight={searchResult.fields.title}/> 
+                  <Highlighter autoEscape={true} searchWords={[searchQuery]} className="search-text" textToHighlight={searchResult.fields.richText.content[0].content[0].value}/>
+                  <p className="search-Author">Author(s): {searchResult.fields.author}</p>
+                  <a href={`/${searchResult.fields.title.toLowerCase()}`}>Read more...</a>
                   
                 </div>
               </div>
-            </div>
+            </li>
           )
           }) }
-        </div> 
-      </div>
+        </ul> 
+      
     </div>
   )
 }

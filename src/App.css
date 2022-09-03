@@ -1,5 +1,6 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Quicksand&family=Roboto&display=swap');.App {
   text-align: center;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .App-logo {
@@ -40,4 +41,71 @@
     transform: rotate(360deg);
   }
 
+}
+.body-data{
+  display: block;
+  margin: 2rem 2rem;
+  width: 1200px;
+  
+}
+.card {
+  height: 50vh;
+  border: 2px solid rgba(110, 100, 94, 0.169);
+ 
+}
+.main-content{
+  margin-bottom: 3rem;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+ align-content: center;
+  justify-content: space-between;
+}
+.card-body img {
+  align-self: center;
+}
+.card-title {
+
+  margin-bottom: 1rem;
+}
+.nav-body{
+  margin: 2rem 2rem;
+  width: 1200px;
+}
+.body-game-details {
+  margin:2rem 2rem;
+  display:flex;
+  
+
+}
+.game-detail-img{
+  width: 300px;
+  height: 300px;
+  padding-right: 2rem;
+  border-right: #94a6ca solid 2px;
+  margin-right: 1rem;
+}
+.game-detail-title{
+  margin-bottom: 3rem;
+}
+.game-detail-content {
+  width: 80vh;
+  margin-left: 2rem;
+}
+.search-row{
+  text-align: start;
+}
+.search-back{
+  margin : 2rem 3rem;
+}
+.li-search{
+  margin: 2rem 2rem;
+  border-bottom: #6a8acb solid 2px;
+  list-style: none;
+}
+.search-text-title{
+  font-size: larger;
+  padding-bottom: 2rem;
 }

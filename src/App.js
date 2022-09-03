@@ -1,4 +1,5 @@
 import './App.css';
+
 import {useEffect, useState} from 'react'
 import RenderData from './Components/RenderData';
 import {Routes, Route} from "react-router-dom";
@@ -52,8 +53,8 @@ function App() {
       <NavScroll searchQuery={searchQuery} setSearchQuery={setSearchQuery} search={search}/>
       <Routes>
         <Route exact path="/" element={<RenderData entries={entries} assets={assets}/>}></Route>
-        <Route path="/:SingleGameTitle" element={<GameDetails  name=""/>}></Route>
-        <Route exact path="/search" element={<Search search={search} entries={entries} searchResults={searchResults} />} />
+        <Route path="/:singleGameTitle" element={<GameDetails assets={assets} entries={entries} name=""/>}></Route>
+        <Route exact path="/search" element={<Search search={search} entries={entries} searchQuery={searchQuery} searchResults={searchResults} />} />
       </Routes>
       <Footer />
     </div>
