@@ -1,7 +1,11 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import'./renderData.css'
+
 
 function RenderData({entries, assets}) {
     //console.log(entries )
@@ -22,7 +26,7 @@ function RenderData({entries, assets}) {
          const imageUrl = _getAssetUrl(entry.fields.image.sys.id)
           return(
           <Col md={4}key={index} >
-              <div className="card main-back">
+              <div className="card main-back" style={{height: "100%"}}>
                 <div className="card-body">
                   <h5 className="card-title">{entry.fields.title}</h5>
                   <img className="image_size" src={imageUrl} alt="not loading"></img>
@@ -37,7 +41,7 @@ function RenderData({entries, assets}) {
           }) }
         </div> 
       </div>
-      <Footer />
+      
     </div>
     
 
