@@ -1,7 +1,7 @@
 {
   "name": "blog_project",
   "version": "0.1.0",
-  "homepage": ".",
+  "homepage": "https://georasam.github.io/blog_project/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
