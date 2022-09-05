@@ -51,8 +51,8 @@ function App() {
       <h4 className="title_description">The Board Game Blog</h4>
       <NavScroll searchQuery={searchQuery} setSearchQuery={setSearchQuery} search={search}/>
       <Routes>
-        <Route exact path="/" element={<RenderData entries={entries} assets={assets}/>}></Route>
-        <Route path="/:SingleGameTitle" element={<GameDetails  name=""/>}></Route>
+        <Route path="/" element={<RenderData entries={entries} assets={assets}/>}></Route>
+        <Route path="/:SingleGameTitle" element={<GameDetails  entries={entries} assets={assets}/>}></Route>
         <Route exact path="/search" element={<Search search={search} entries={entries} searchResults={searchResults} />} />
       </Routes>
       <Footer />

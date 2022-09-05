@@ -1,8 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import'./renderData.css'
 
@@ -33,7 +31,7 @@ function RenderData({entries, assets}) {
                   <p className="card-text">{entry.fields.richtext}</p>
                   <p className="card-Author">Author(s): {entry.fields.author}</p>
                   <p className="card-publisher"> Publisher: {entry.fields.publisher}</p>
-                  <Button href="#" variant='success' className="btn btn-primary"><Link to={`/fantasiaStartpage/${entry.fields.title.toLowerCase()}`}>Read more...</Link></Button>
+                  <Button href="#" variant='success' className="btn btn-primary"><Link to={`/${entry.fields.title.toLowerCase()}`}>Read more...</Link></Button>
                 </div>
               </div>
             </Col>
