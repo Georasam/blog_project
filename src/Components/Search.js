@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import Highlighter from "react-highlight-words";
 function Search({searchResults, searchQuery}) {
     

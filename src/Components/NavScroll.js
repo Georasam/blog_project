@@ -5,11 +5,9 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function NavScroll({ search, setSearchQuery, searchQuery }) {
-  const [handler, setHandler] = useState("");
   const inputHandler = (event) => {
     setSearchQuery(event.target.value);
     console.log(searchQuery);
