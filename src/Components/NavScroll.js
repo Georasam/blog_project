@@ -34,7 +34,7 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/blog_project">Home</Nav.Link>
             <Nav.Link href="">About us</Nav.Link>
             <NavDropdown title="Genre" id="navbarScrollingDropdown">
               <NavDropdown.Item href="">Test 1</NavDropdown.Item>
@@ -52,7 +52,7 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
               aria-label="Search"
               onChange={inputHandler}
             />
-            <Link  to="/search">
+            <Link  to="blog_project/search">
               <Button
                 type="submit"
                 onClick={search}

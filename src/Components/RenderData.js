@@ -33,7 +33,7 @@ function RenderData({entries, assets}) {
                   <p className="card-text">{entry.fields.richtext}</p>
                   <p className="card-Author">Author(s): {entry.fields.author}</p>
                   <p className="card-publisher"> Publisher: {entry.fields.publisher}</p>
-                  <Link to={`/${entry.fields.title.toLowerCase()}`}>
+                  <Link to={`/blog_project/${entry.fields.title.toLowerCase()}`}>
                   <Button  variant='success' className="btn btn-primary">Read more</Button>
                   </Link>
                 </div>
