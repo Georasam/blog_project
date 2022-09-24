@@ -1,27 +1,28 @@
+
 import {useParams} from "react-router-dom"
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
 
 function GameDetails ({entries, assets}) {
-
-    function _getAssetUrl(assetId) {
-        const found = assets.find(element => element.sys.id === assetId)
-        return (
-          found.fields.file.url
-        )
-      }
-
-      let { SingleGameTitle } = useParams();
-      console.log(SingleGameTitle)
+    let { singleGameTitle } = useParams();
+    
+      const gameEntry = entries.find(element => element.fields.title.toLowerCase() === singleGameTitle)
+      console.log("gameentry", gameEntry)
+      const gameImage = assets.find(element=> element.sys.id === gameEntry.fields.image.sys.id )
+      console.log(gameImage)
+        console.log("Entries", entries)
+        console.log("Assets", assets)
+        
     return (
-        console.log("Entries", entries),
-        console.log("Assets", assets),
-        <div>
-            {entries.filter((entry, index)=>{
-                if (entry.fields.title === SingleGameTitle)
-                console.log(entry)
-                return (
-                    <h1>{entry.fields.title}</h1>
-                )
-            })}
+      
+        <div className="body-game-details">
+           <img className="game-detail-img"src={gameImage.fields.file.url} alt="not loading"/>  
+            <div>
+            <h1 className="game-detail-title">{gameEntry.fields.title}</h1>
+               
+            <p className="game-detail-content">{documentToReactComponents(gameEntry.fields.richText)}</p> 
+            </div>
+            
         </div>
     )
 }
