@@ -4,14 +4,15 @@ const apiUrl = "http://localhost:5050"
 async function getBoardGames(){
     const response =await fetch (apiUrl + '/api/boardgames') 
     const result =await response.json()
-    console.log("heyyyyyyyyyy")
     return result
 }
 
+
+
 async function gameEdit({id,title,
     author,
-    img_url,
-    rich_text,
+    imgUrl,
+    richText,
     publisher}){
         
     const response =await fetch (apiUrl + `/api/boardgames/${id}`,{
@@ -22,12 +23,11 @@ async function gameEdit({id,title,
         },
         body: JSON.stringify({title,
             author,
-            img_url,
-            rich_text,
+            imgUrl,
+            richText,
             publisher})
     })
     if (response.ok) {
-        console.log(title)
         return getBoardGames()
     }
 
@@ -35,10 +35,11 @@ async function gameEdit({id,title,
     
 }
 
+
 async function addBoardGames( {title,
     author,
-    img_url,
-    rich_text,
+    imgUrl,
+    richText,
     publisher} ) {
         
     const response = await fetch( apiUrl + '/api/boardgames', {
@@ -48,8 +49,8 @@ async function addBoardGames( {title,
         },
         body: JSON.stringify({title,
             author,
-            img_url,
-            rich_text,
+            imgUrl,
+            richText,
             publisher})
     })
     if (response.ok) {
@@ -59,8 +60,10 @@ async function addBoardGames( {title,
     throw Error('Adding author failed')
     
 }
+
+
+
 async function deleteBoardGames(id){
-    console.log(id)
     const response =await fetch (apiUrl + `/api/boardgames/${id.id}`,{
         
         method: 'Delete',
@@ -76,6 +79,10 @@ async function deleteBoardGames(id){
 
     throw Error('Edit Game failed')
 }
+
+
+
+
 
 export  {
     getBoardGames,

@@ -18,7 +18,7 @@ function AddGame({ data, addGames }) {
     addGames({
         title: newTitle,
         author: newAuthor,
-        img_url: newImgUrl,
+        imgUrl: newImgUrl,
         rich_text: newText,
         publisher: newPublisher
     })

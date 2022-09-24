@@ -25,14 +25,14 @@ console.log(data)
 
        <div className="row ">{data.map((entry,index)=>{
          /* const imageUrl = _getAssetUrl(entry.fields.image.sys.id) */
-         console.log(entry)
+         console.log(entry.imgUrl)
           return(
           <Col className="main-content" md={4} key={index} >
               <div className="card main-back" style={{height: "100%"}}>
                 <div className="card-body">
                   <h5 className="card-title">{entry.title}</h5>
-                  <img className="image_size" src={entry.imageUrl} alt="not loading"></img>
-                  <p className="card-text">{entry.richtext}</p>
+                  <img className="image_size" src={entry.imgUrl} alt="not loading"></img>
+                  <p className="card-text">{entry.rich_text}</p>
                   <p className="card-Author">Author(s): {entry.author}</p>
                   <p className="card-publisher"> Publisher: {entry.publisher}</p>
                  {/*  <Link to={`/blog_project/${entry.fields.title.toLowerCase()}`}>

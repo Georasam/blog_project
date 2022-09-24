@@ -19,7 +19,7 @@ const EditPosts = ({data, updateGame,deleteGames}) => {
     const [newText, setNewText] = useState();
     
 
-   
+   console.log(newImgUrl)
     
     const gameTitles = data.map((element, index) => {
       return <div key={index}>{element.title}</div>;
@@ -47,8 +47,8 @@ history("/blog_project")
         id: gameid,
           title: newTitle,
           author: newAuthor,
-          img_url: newImgUrl,
-          rich_text: newText,
+          imgUrl: newImgUrl,
+          richText: newText,
           publisher: newPublisher
       })
   }
@@ -97,8 +97,8 @@ history("/blog_project")
         
         <label for="story">Rich TEXT:</label>
   
-        <textarea id="story" name="story" rows="52" cols="100" onChange={({ target }) => setNewText(target.value)}>
-          {foundgame.richText}
+        <textarea id="story" name="story" placeholder={foundgame.richText} rows="52" cols="100" onChange={({ target }) => setNewText(target.value)}>
+          
         </textarea>
         <div className="tableCell1">
           <button onClick={handleUpdateGame}>Update</button>

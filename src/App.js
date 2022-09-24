@@ -9,7 +9,15 @@ import NavScroll from "./Components/NavScroll";
 import Search from "./Components/Search";
 import AddGame from "./Components/AddGame";
 import EditPosts from "./Components/EditPosts";
-import { getBoardGames,addBoardGames, gameEdit,deleteBoardGames } from "./Controllers/api";
+import Album from "./Components/Album"
+import {
+  getBoardGames,
+  addBoardGames,
+  gameEdit,
+  deleteBoardGames,
+} from "./Controllers/api";
+
+
 
 function App() {
   const [data, setData] = useState();
@@ -17,8 +25,12 @@ function App() {
   const [assets, setAssets] = useState(); //images
   const [searchQuery, setSearchQuery] = useState(); //searchquery
   const [searchResults, setSearchResults] = useState(); //searchresults
-  const [loadingA, setLoadingA] = useState(true);
-  const [errorA, setErrorA] = useState(null);
+
+
+
+
+  /* const [loadingA, setLoadingA] = useState(true);
+  const [errorA, setErrorA] = useState(null); */
 
   async function loadData() {
     const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&content_type=${process.env.REACT_APP_CONTENTTYPE}&metadata.tags.sys.id[in]=boardGames`;
@@ -31,35 +43,32 @@ function App() {
 
   async function getGames() {
     const games = await getBoardGames();
-    setData(games)
+    setData(games);
     /* setData((prev) => {
       return { ...prev, games };
     }); */
   }
 
-  async function updateGame(element){
-    const games = await gameEdit(element)
-    setData(games)
-    
+  async function updateGame(element) {
+    const games = await gameEdit(element);
+    setData(games);
   }
 
   async function addGames(game) {
-    
     const games = await addBoardGames(game);
 
-    setData(games)
-    
+    setData(games);
   }
 
   async function deleteGames(game) {
-    
     const games = await deleteBoardGames(game);
 
-    setData(games)
-    
+    setData(games);
   }
 
-console.log(data)
+ 
+
+
   /*   async function getGames() {
     try {
       setLoadingA(true);
@@ -75,11 +84,14 @@ console.log(data)
   }
    */
 
+
+
   useEffect(() => {
     getGames();
   }, []);
 
- 
+
+
   async function search() {
     const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&query=${searchQuery}`;
     const response = await fetch(url);
@@ -88,9 +100,11 @@ console.log(data)
     setSearchResults(result.items); //rich test
   }
 
+
   if (!data) {
     return <div>Data is Loading...</div>;
   }
+
 
   return (
     <div className="App">
@@ -105,12 +119,27 @@ console.log(data)
         <Route
           exact
           path="/blog_project"
-          element={
-            <RenderData data={data} entries={entries} assets={assets} />
-          }
+          element={<RenderData data={data} entries={entries} assets={assets} />}
         ></Route>
-        <Route path="/blog_project/add" element={<AddGame data={data} addGames={addGames}/> }/>
-        <Route exact path="/blog_project/edit/:gameid" element={<EditPosts data={data} updateGame={updateGame} deleteGames={deleteGames} /> }/>
+        <Route
+          path="/blog_project/test"
+          element={<Album data={data}  />}
+        />
+        <Route
+          path="/blog_project/add"
+          element={<AddGame data={data} addGames={addGames} />}
+        />
+        <Route
+          exact
+          path="/blog_project/edit/:gameid"
+          element={
+            <EditPosts
+              data={data}
+              updateGame={updateGame}
+              deleteGames={deleteGames}
+            />
+          }
+        />
         {/* <Route
         exact
           path="/blog_project/:singleGameTitle"
@@ -128,7 +157,6 @@ console.log(data)
             />
           }
         />
-        
       </Routes>
       <Footer />
     </div>
