@@ -7,6 +7,13 @@ async function getBoardGames(){
     return result
 }
 
+async function getSingleBoardGame(gameName){
+    const slug = gameName.replace(" ", "_").toLowerCase()
+    const response =await fetch (apiUrl + '/api/boardgames?filter=' + slug) 
+    const result =await response.json()
+    return result
+}
+
 
 
 async function gameEdit({id,title,
@@ -88,5 +95,6 @@ export  {
     getBoardGames,
     addBoardGames,
     gameEdit,
-    deleteBoardGames
+    deleteBoardGames,
+    getSingleBoardGame
 }
