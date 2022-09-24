@@ -5,12 +5,14 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 function GameDetails ({entries, assets}) {
     let { singleGameTitle } = useParams();
+    
       const gameEntry = entries.find(element => element.fields.title.toLowerCase() === singleGameTitle)
       console.log("gameentry", gameEntry)
       const gameImage = assets.find(element=> element.sys.id === gameEntry.fields.image.sys.id )
       console.log(gameImage)
         console.log("Entries", entries)
         console.log("Assets", assets)
+        
     return (
       
         <div className="body-game-details">
