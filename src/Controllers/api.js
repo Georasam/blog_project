@@ -8,7 +8,7 @@ async function getBoardGames(){
 }
 
 async function getSingleBoardGame(gameName){
-    const slug = gameName.replace(" ", "_").toLowerCase()
+    const slug = gameName.replaceAll(" ", "_").toLowerCase()
     const response =await fetch (apiUrl + '/api/boardgames?filter=' + slug) 
     const result =await response.json()
     return result
