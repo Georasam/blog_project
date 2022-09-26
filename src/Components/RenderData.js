@@ -33,9 +33,9 @@ console.log(data)
                   <p className="card-text">{entry.rich_text}</p>
                   <p className="card-Author">Author(s): {entry.author}</p>
                   <p className="card-publisher"> Publisher: {entry.publisher}</p>
-                 {/*  <Link to={`/blog_project/${entry.fields.title.toLowerCase()}`}>
+                  <Link to={`/blog_project/${entry.slug}`}>
                   <Button  variant='success' className="btn btn-primary">Read more</Button>
-                  </Link> */}
+                  </Link>
                   <Link to={`/blog_project/edit/${entry.id}`}>
                   <Button  variant='success' className="btn btn-primary">edit</Button>
                   </Link>

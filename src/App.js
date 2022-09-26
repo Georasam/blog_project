@@ -15,31 +15,20 @@ import {
   addBoardGames,
   gameEdit,
   deleteBoardGames,
+  //getSingleBoardGame
 } from "./Controllers/api";
 
 
 
 function App() {
   const [data, setData] = useState();
-  const [entries, setEntries] = useState(); //rich text
-  const [assets, setAssets] = useState(); //images
+  //const [singleGame, setSingleGame] = useState();
   const [searchQuery, setSearchQuery] = useState(); //searchquery
   const [searchResults, setSearchResults] = useState(); //searchresults
-
-
-
 
   /* const [loadingA, setLoadingA] = useState(true);
   const [errorA, setErrorA] = useState(null); */
 
-  async function loadData() {
-    const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&content_type=${process.env.REACT_APP_CONTENTTYPE}&metadata.tags.sys.id[in]=boardGames`;
-    const response = await fetch(url);
-    const result = await response.json();
-    console.log(result);
-    setEntries(result.items); //rich test
-    setAssets(result.includes.Asset); //images
-  }
 
   async function getGames() {
     const games = await getBoardGames();
@@ -48,6 +37,11 @@ function App() {
       return { ...prev, games };
     }); */
   }
+
+ /*  async function getSingleGame(){
+    const singleGame = await getSingleBoardGame();
+    setSingleGame(singleGame)
+  } */
 
   async function updateGame(element) {
     const games = await gameEdit(element);
@@ -116,10 +110,13 @@ function App() {
         search={search}
       />
       <Routes>
+        {/* <Route path="/" element={<RenderData entries={entries} assets={assets}/>}></Route> */}
+        <Route exact path="/blog_project/:gameSlug" element={<GameDetails/>}></Route>
+        {/* <Route exact path="/search" element={<Search search={search} entries={entries} searchResults={searchResults} />} /> */}
         <Route
           exact
           path="/blog_project"
-          element={<RenderData data={data} entries={entries} assets={assets} />}
+          element={<RenderData data={data}/>}
         ></Route>
         <Route
           path="/blog_project/test"
@@ -151,7 +148,7 @@ function App() {
           element={
             <Search
               search={search}
-              entries={entries}
+              data={data}
               searchQuery={searchQuery}
               searchResults={searchResults}
             />

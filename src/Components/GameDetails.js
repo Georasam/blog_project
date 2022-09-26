@@ -1,26 +1,36 @@
+import { useEffect, useState } from "react";
+import { useParams} from "react-router-dom";
 
-import {useParams} from "react-router-dom"
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import {getSingleBoardGame} from "../Controllers/api";
 
+function GameDetails () {
+    let { gameSlug } = useParams();
+    const [singleGameData, setSingleGameData] = useState();
+    console.log(gameSlug)
 
-function GameDetails ({entries, assets}) {
-    let { singleGameTitle } = useParams();
-    
-      const gameEntry = entries.find(element => element.fields.title.toLowerCase() === singleGameTitle)
-      console.log("gameentry", gameEntry)
-      const gameImage = assets.find(element=> element.sys.id === gameEntry.fields.image.sys.id )
-      console.log(gameImage)
-        console.log("Entries", entries)
-        console.log("Assets", assets)
+    async function getSingleGame(){
+        const singleBoardGame = await getSingleBoardGame(gameSlug);
+        console.log(singleBoardGame)
+        setSingleGameData(singleBoardGame)
+    }
+    console.log(singleGameData)
+
+    useEffect(() => {
+        getSingleGame();
+      }, []);
         
+      if (!singleGameData) {
+        return <div>Data is Loading...</div>;
+      }
+
     return (
-      
         <div className="body-game-details">
-           <img className="game-detail-img"src={gameImage.fields.file.url} alt="not loading"/>  
+           <img className="game-detail-img" src={singleGameData.imgUrl} alt="not loading"/>  
             <div>
-            <h1 className="game-detail-title">{gameEntry.fields.title}</h1>
-               
-            <p className="game-detail-content">{documentToReactComponents(gameEntry.fields.richText)}</p> 
+            <h1 className="game-detail-title">{singleGameData.title}</h1>
+            <p>{singleGameData.author}</p>
+            <p className="game-detail-content">{singleGameData.richText}</p>
+            <p>{singleGameData.publisher}</p>
             </div>
             
         </div>
