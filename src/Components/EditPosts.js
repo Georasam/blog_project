@@ -21,9 +21,9 @@ const EditPosts = ({data, updateGame,deleteGames}) => {
 
    console.log(newImgUrl)
     
-    const gameTitles = data.map((element, index) => {
+    /* const gameTitles = data.map((element, index) => {
       return <div key={index}>{element.title}</div>;
-    });
+    }); */
 
    /*  async function calledGame (){
        const foundgame= await data.find((game)=> game.id === gameid)

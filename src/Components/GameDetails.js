@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import { useParams} from "react-router-dom";
-
+import ReactMarkdown from "react-markdown"
 import {getSingleBoardGame} from "../Controllers/api";
 
 function GameDetails () {
@@ -21,18 +21,19 @@ function GameDetails () {
         
       if (!singleGameData) {
         return <div>Data is Loading...</div>;
-      }
+      } 
 
     return (
         <div className="body-game-details">
            <img className="game-detail-img" src={singleGameData.imgUrl} alt="not loading"/>  
             <div>
-            <h1 className="game-detail-title">{singleGameData.title}</h1>
-            <p>{singleGameData.author}</p>
-            <p className="game-detail-content">{singleGameData.richText}</p>
-            <p>{singleGameData.publisher}</p>
+              <h1 className="game-detail-title">{singleGameData.title}</h1>
+              <p>Created by: <i>{singleGameData.author}</i></p>
+              <br/>
+              <ReactMarkdown>{singleGameData.richText}</ReactMarkdown>
+              <br/>
+              <p>Published by: <i>{singleGameData.publisher}</i></p>
             </div>
-            
         </div>
     )
 }
