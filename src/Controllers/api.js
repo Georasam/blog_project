@@ -7,9 +7,11 @@ async function getBoardGames(){
     return result
 }
 
-async function getSingleBoardGame(gameName){
-    const slug = gameName.replaceAll(" ", "_").toLowerCase()
-    const response =await fetch (apiUrl + '/api/boardgames?filter=' + slug) 
+async function getSingleBoardGame(slug){
+    //console.log(SingleGameTitle)
+    //const slug = SingleGameTitle.replaceAll(" ", "_").toLowerCase()
+    console.log(slug)
+    const response =await fetch (apiUrl + '/api/boardgames/byslug/' + slug) 
     const result =await response.json()
     return result
 }
@@ -22,7 +24,7 @@ async function gameEdit({id,title,
     richText,
     publisher}){
         
-    const response =await fetch (apiUrl + `/api/boardgames/${id}`,{
+    const response = await fetch (apiUrl + `/api/boardgames/${id}`,{
         
         method: 'Put',
         headers: {

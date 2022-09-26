@@ -15,13 +15,14 @@ import {
   addBoardGames,
   gameEdit,
   deleteBoardGames,
-  getSingleBoardGame
+  //getSingleBoardGame
 } from "./Controllers/api";
 
 
 
 function App() {
   const [data, setData] = useState();
+  //const [singleGame, setSingleGame] = useState();
   const [searchQuery, setSearchQuery] = useState(); //searchquery
   const [searchResults, setSearchResults] = useState(); //searchresults
 
@@ -37,10 +38,10 @@ function App() {
     }); */
   }
 
-  async function getSingleGame(){
-    const games = await getSingleBoardGame();
-    setData(games)
-  }
+ /*  async function getSingleGame(){
+    const singleGame = await getSingleBoardGame();
+    setSingleGame(singleGame)
+  } */
 
   async function updateGame(element) {
     const games = await gameEdit(element);
@@ -110,7 +111,7 @@ function App() {
       />
       <Routes>
         {/* <Route path="/" element={<RenderData entries={entries} assets={assets}/>}></Route> */}
-        <Route exact path="/blog_project/:SingleGameTitle" element={<GameDetails  data={data} getSingleGame={getSingleGame}/>}></Route>
+        <Route exact path="/blog_project/:gameSlug" element={<GameDetails/>}></Route>
         {/* <Route exact path="/search" element={<Search search={search} entries={entries} searchResults={searchResults} />} /> */}
         <Route
           exact
