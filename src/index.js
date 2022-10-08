@@ -1,21 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import {HashRouter, BrowserRouter} from "react-router-dom"
+import { HashRouter, BrowserRouter,Routes,Route } from "react-router-dom";
+import { AuthProvider } from './context/AuthProvider';
 
-
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+    <AuthProvider>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

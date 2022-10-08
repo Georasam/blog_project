@@ -1,6 +1,81 @@
 const apiUrl = "http://localhost:5050"
 
 
+
+
+async function loginControl( {username, password} ) {
+    
+    const response = await fetch( apiUrl + '/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            username,
+            password
+        })
+    })
+    if (response.ok) {
+        const tok= await response.json()
+        console.log(response)
+        localStorage.setItem('token', tok.data)
+        
+        return getBoardGames()
+    }else{
+        console.log('Error: ',await response.json())
+        throw Error('Login Failed')
+    }
+    
+}
+
+async function registerControl( {username, password} ) {
+    
+    const response = await fetch( apiUrl + '/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username,
+            password
+        })
+    })
+    if (response.ok) {
+        console.log(response)
+        return getBoardGames()
+    }else{
+     const err=  await response.json()
+     console.log(err.error)
+     console.log(response)
+    }
+   return getBoardGames()
+}
+async function changePassControl({password}){
+
+    const response = await fetch( apiUrl + '/api/change-password', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            newPassword: password,
+            token: localStorage.getItem('token')
+        })
+    })
+    if (response.ok) {
+        console.log(response)
+        return getBoardGames()
+    }else{
+     const err=  await response.json()
+     console.log(err.error)
+     console.log('errorrr')
+    }
+}
+
+
+
+
 async function getBoardGames(){
     const response =await fetch (apiUrl + '/api/boardgames') 
     const result =await response.json()
@@ -83,10 +158,12 @@ async function deleteBoardGames(id){
 
 
 
-
 export  {
     getBoardGames,
     addBoardGames,
     gameEdit,
-    deleteBoardGames
+    deleteBoardGames,
+    registerControl,
+    loginControl,
+    changePassControl
 }
