@@ -23,7 +23,7 @@ console.log(data)
 
        <div className="row ">{data.map((entry,index)=>{
          /* const imageUrl = _getAssetUrl(entry.fields.image.sys.id) */
-         console.log(entry.imgUrl)
+         //console.log(entry.imgUrl)
           return(
           <Col className="main-content" md={4} key={index} >
               <div className="card main-back" style={{height: "100%"}}>

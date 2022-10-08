@@ -35,9 +35,11 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
             <Nav.Link href="/blog_project">Home</Nav.Link>
             <Nav.Link href="">About us</Nav.Link>
             <NavDropdown title="Genre" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="">Test 1</NavDropdown.Item>
-              <NavDropdown.Item href="">Test 2</NavDropdown.Item>
-              <NavDropdown.Item href="">Test 3</NavDropdown.Item>
+              <NavDropdown.Item href="">Roll and Move</NavDropdown.Item>
+              <NavDropdown.Item href="">Cooperative</NavDropdown.Item>
+              <NavDropdown.Item href="">Deck Building</NavDropdown.Item>
+              <NavDropdown.Item href="">Party Games</NavDropdown.Item>
+              <NavDropdown.Item href="">Strategic</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="">Contact</Nav.Link>
           </Nav>
