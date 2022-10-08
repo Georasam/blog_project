@@ -16,6 +16,8 @@ import ChangePass from "./Components/Changepass";
 import Layout from "./Components/Layout";
 import Missing from "./Components/Missing"
 import RequireAuth from "./Components/RequireAuth";
+import useAuth from "./hooks/useAuth";
+
 import {
   getBoardGames,
   addBoardGames,
@@ -107,7 +109,8 @@ function App() {
   useEffect(() => {
     getGames();
   }, []);
-
+  const {auth}=useAuth()
+  console.log(auth.user +'inside indexapppp')
   async function search() {
     const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&query=${searchQuery}`;
     const response = await fetch(url);
@@ -178,8 +181,9 @@ function App() {
             path="/blog_project/add"
             element={<AddGame data={data} addGames={addGames} />}
           />
-</Route>
-          <Route
+
+
+   <Route
             exact
             path="/blog_project/edit/:gameid"
             element={
@@ -189,7 +193,8 @@ function App() {
                 deleteGames={deleteGames}
               />
             }
-          />
+          /></Route>
+         
 
           <Route
             path="/blog_project/change-password"
