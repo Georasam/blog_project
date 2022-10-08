@@ -17,6 +17,7 @@ import Layout from "./Components/Layout";
 import Missing from "./Components/Missing"
 import RequireAuth from "./Components/RequireAuth";
 import useAuth from "./hooks/useAuth";
+import PersistLogin from "./Components/PersistLogin";
 
 import {
   getBoardGames,
@@ -134,7 +135,7 @@ function App() {
       />
 
       <Routes>
-
+      
         <Route path="/" element={<Layout />}>
           <Route
             exact
@@ -176,6 +177,7 @@ function App() {
           path="/blog_project/:singleGameTitle"
           element={<GameDetails assets={assets} entries={entries} name="" />}
         ></Route> */}
+        <Route element={<PersistLogin />}>
 <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
           <Route
             path="/blog_project/add"
@@ -195,7 +197,7 @@ function App() {
             }
           /></Route>
          
-
+         </Route>
           <Route
             path="/blog_project/change-password"
             element={
