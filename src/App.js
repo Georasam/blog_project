@@ -2,7 +2,7 @@ import "./App.css";
 
 import { useEffect, useState } from "react";
 import RenderData from "./Components/RenderData";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Footer from "./Components/Footer";
 import GameDetails from "./Components/GameDetails";
 import NavScroll from "./Components/NavScroll";
@@ -14,10 +14,12 @@ import Login from "./Components/Login";
 import Album from "./Components/Album";
 import ChangePass from "./Components/Changepass";
 import Layout from "./Components/Layout";
-import Missing from "./Components/Missing"
+import Missing from "./Components/Missing";
 import RequireAuth from "./Components/RequireAuth";
 import useAuth from "./hooks/useAuth";
 import PersistLogin from "./Components/PersistLogin";
+import Unauthorized from "./Components/Unauthorized";
+import useLogout from "./hooks/useLogout";
 
 import {
   getBoardGames,
@@ -30,9 +32,9 @@ import {
 } from "./Controllers/api";
 const ROLES = {
   User: 2001,
-  Editor: 1984,
-  Admin: 5150
-}
+
+  Admin: 5150,
+};
 function App() {
   const [data, setData] = useState();
   const [entries, setEntries] = useState(); //rich text
@@ -110,8 +112,9 @@ function App() {
   useEffect(() => {
     getGames();
   }, []);
-  const {auth}=useAuth()
-  console.log(auth.user +'inside indexapppp')
+  const logout = useLogout()
+  const { auth } = useAuth();
+  
   async function search() {
     const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&query=${searchQuery}`;
     const response = await fetch(url);
@@ -120,12 +123,23 @@ function App() {
     setSearchResults(result.items); //rich test
   }
 
+
+
+  const signOut = async()=>{
+
+
+    await logout()
+    /* navigate() */
+  }
   if (!data) {
     return <div>Data is Loading...</div>;
   }
 
   return (
     <div className="App">
+      <div>
+        <button onClick={signOut}>Signout</button>
+      </div>
       <h1 className="title_name">FANTASIA</h1>
       <h4 className="title_description">The Board Game Blog</h4>
       <NavScroll
@@ -135,7 +149,6 @@ function App() {
       />
 
       <Routes>
-      
         <Route path="/" element={<Layout />}>
           <Route
             exact
@@ -165,49 +178,45 @@ function App() {
             }
           />
           <Route
-
             path="/blog_project/register"
             element={
               <Register data={data} registerUsername={registerUsername} />
             }
           />
-
+<Route path="/blog_project/unauthorized" element={<Unauthorized />} />
           {/* <Route
         exact
           path="/blog_project/:singleGameTitle"
           element={<GameDetails assets={assets} entries={entries} name="" />}
         ></Route> */}
-        <Route element={<PersistLogin />}>
-<Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-          <Route
-            path="/blog_project/add"
-            element={<AddGame data={data} addGames={addGames} />}
-          />
-
-
-   <Route
-            exact
-            path="/blog_project/edit/:gameid"
-            element={
-              <EditPosts
-                data={data}
-                updateGame={updateGame}
-                deleteGames={deleteGames}
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.User]} />}>
+              <Route
+                path="/blog_project/add"
+                element={<AddGame data={data} addGames={addGames} />}
               />
-            }
-          /></Route>
-         
-         </Route>
-          <Route
-            path="/blog_project/change-password"
-            element={
-              <ChangePass data={data} changePassElement={changePassElement} />
-            }
-          />
-          <Route path="*" element={<Missing />} />
 
+              <Route
+                exact
+                path="/blog_project/edit/:gameid"
+                element={
+                  <EditPosts
+                    data={data}
+                    updateGame={updateGame}
+                    deleteGames={deleteGames}
+                  />
+                }
+              />
+            </Route>
+          </Route>
         </Route>
-
+        <Route
+          path="/blog_project/change-password"
+          element={
+            <ChangePass data={data} changePassElement={changePassElement} />
+          }
+        />
+        <Route path="*" element={<Missing />} />
       </Routes>
       <Footer />
     </div>

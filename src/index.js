@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { HashRouter, BrowserRouter,Routes,Route } from "react-router-dom";
+import {  BrowserRouter,Routes,Route } from "react-router-dom";
 import { AuthProvider } from './context/AuthProvider';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

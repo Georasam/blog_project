@@ -25,6 +25,7 @@ const useAxiosPrivate = () => {
                 if (error?.response?.status === 403 && !prevRequest?.sent) {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
+
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
                     return axiosPrivate(prevRequest);
                 }
@@ -36,7 +37,7 @@ const useAxiosPrivate = () => {
             axiosPrivate.interceptors.request.eject(requestIntercept);
             axiosPrivate.interceptors.response.eject(responseIntercept);
         }
-    }, [auth, refresh])
+    }, [auth ,refresh ])
 
     return axiosPrivate;
 }

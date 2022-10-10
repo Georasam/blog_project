@@ -13,7 +13,7 @@ const EditPosts = ({ data, updateGame, deleteGames }) => {
   const [newImgUrl, setNewImgUrl] = useState();
   const [newText, setNewText] = useState();
 
-  console.log(newImgUrl);
+  
 
   const gameTitles = data.map((element, index) => {
     return <div key={index}>{element.title}</div>;

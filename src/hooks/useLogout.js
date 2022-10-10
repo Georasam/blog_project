@@ -3,7 +3,7 @@ import useAuth from "./useAuth";
 
 const useLogout = () => {
     const { setAuth } = useAuth();
-
+console.log('triigge')
     const logout = async () => {
         setAuth({});
         try {

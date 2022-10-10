@@ -2,24 +2,13 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import useAuth from "../hooks/useAuth";
 import Col from 'react-bootstrap/Col';
 
 
 
 function RenderData({data, entries, assets}) {
-    //console.log(entries )
-    //console.log(assets)
-console.log(data)
-  /*   function _getAssetUrl(assetId) { //underline Function (_getAssetUrl) indicates a helper function. In this case matching Image with Content
-      const found = assets.find(element => element.sys.id === assetId)
-      //console.log(assetId, found.fields.file.url)
-      return (
-        found.fields.file.url
-      )
-    } */
-
+  const { setAuth, persist} = useAuth();
   return ( 
     <div className="body-data">
 
@@ -38,8 +27,8 @@ console.log(data)
                  {/*  <Link to={`/blog_project/${entry.fields.title.toLowerCase()}`}>
                   <Button  variant='success' className="btn btn-primary">Read more</Button>
                   </Link> */}
-                  <Link to={`/blog_project/edit/${entry.id}`}>
-                  <Button  variant='success' className="btn btn-primary">edit</Button>
+                  <Link  disabled={!setAuth ? true : false} to={`/blog_project/edit/${entry.id}`}>
+                  <button  variant='success' className="btn btn-primary">edit</button>
                   </Link>
                 </div>
               </div>
