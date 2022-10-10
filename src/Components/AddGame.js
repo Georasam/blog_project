@@ -1,8 +1,8 @@
-
+import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 
 function AddGame({ data, addGames }) {
-
+  const { auth } = useAuth();
   const [newTitle, setNewTitle] = useState('');
   const [newPublisher, setNewPublisher] = useState('');
   const [newAuthor, setNewAuthor] = useState('');
@@ -20,7 +20,9 @@ function AddGame({ data, addGames }) {
         author: newAuthor,
         imgUrl: newImgUrl,
         rich_text: newText,
-        publisher: newPublisher
+        publisher: newPublisher,
+        accessToken:auth.accessToken,
+      roles: auth.roles
     })
 }
   console.log(data);

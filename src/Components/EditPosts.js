@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
-
+import useAuth from "../hooks/useAuth";
 const EditPosts = ({ data, updateGame, deleteGames }) => {
+  const { auth } = useAuth();
   let { gameid } = useParams();
   const foundgame = data.find((game) => game.id === gameid);
   console.log(foundgame);
@@ -14,7 +15,7 @@ const EditPosts = ({ data, updateGame, deleteGames }) => {
   const [newText, setNewText] = useState();
 
   
-
+console.log(auth)
   const gameTitles = data.map((element, index) => {
     return <div key={index}>{element.title}</div>;
   });
@@ -27,7 +28,9 @@ const EditPosts = ({ data, updateGame, deleteGames }) => {
     calledGame()
     console.log(findGame) */
   function handleDeleteGame() {
-    deleteGames({ id: gameid });
+    deleteGames({ id: gameid,
+      accessToken:auth.accessToken,
+      roles: auth.roles });
     history("/blog_project");
   }
 
@@ -39,6 +42,8 @@ const EditPosts = ({ data, updateGame, deleteGames }) => {
       imgUrl: newImgUrl,
       richText: newText,
       publisher: newPublisher,
+      accessToken:auth.accessToken,
+      roles: auth.roles
     });
   }
   console.log(data);
