@@ -1,23 +1,14 @@
 
 import React from 'react'
-import { Button } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
+import useAuth from "../hooks/useAuth";
 import Col from 'react-bootstrap/Col';
 
 
 
-function RenderData({data, entries, assets}) {
-    //console.log(entries )
-    //console.log(assets)
-console.log(data)
-  /*   function _getAssetUrl(assetId) { //underline Function (_getAssetUrl) indicates a helper function. In this case matching Image with Content
-      const found = assets.find(element => element.sys.id === assetId)
-      //console.log(assetId, found.fields.file.url)
-      return (
-        found.fields.file.url
-      )
-    } */
-
+function RenderData({data}) {
+  const { setAuth, persist} = useAuth();
   return ( 
     <div className="body-data">
 
@@ -33,8 +24,11 @@ console.log(data)
                   <p className="card-text">{entry.rich_text}</p>
                   <p className="card-Author">Author(s): {entry.author}</p>
                   <p className="card-publisher"> Publisher: {entry.publisher}</p>
-                  <Link to={`/blog_project/${entry.slug}`}>
-                  <Button  variant='success' className="btn btn-primary" style={{backgroundColor: "rgb(0,0,0)"}} >Read more</Button>
+                 {/*  <Link to={`/blog_project/${entry.fields.title.toLowerCase()}`}>
+                  <Button  variant='success' className="btn btn-primary">Read more</Button>
+                  </Link> */}
+                  <Link  to={`/blog_project/edit/${entry.id}`}>
+                  <button disabled={!setAuth  && !persist? false : true} variant='success' className="btn btn-primary">edit</button>
                   </Link>
                   {/* <Link to={`/blog_project/edit/${entry.id}`}>
                   <Button  variant='success' className="btn btn-primary">edit</Button>
@@ -54,5 +48,3 @@ console.log(data)
 
 export default RenderData
 
-//Entries Id: .fields.image.sys.id
-//Assets Id: .sys.id
