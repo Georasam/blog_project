@@ -2,6 +2,7 @@ const apiUrl = "http://localhost:5050"
 
 
 
+//LOGIN>>>>>>>>>>>>>>>>>>>>>>
 
 async function loginControl( {username, password} ) {
     
@@ -29,6 +30,8 @@ async function loginControl( {username, password} ) {
     
 }
 
+//REGISTER>>>>>>>>>>>>>>>>>>>>
+
 async function registerControl( {username, password} ) {
     
     const response = await fetch( apiUrl + '/api/register', {
@@ -51,6 +54,9 @@ async function registerControl( {username, password} ) {
     }
    return getBoardGames()
 }
+
+
+//CHANGE PASSWORD>>>>>>>>>>>>>>>>>>
 async function changePassControl({password}){
 
     const response = await fetch( apiUrl + '/api/change-password', {
@@ -163,7 +169,7 @@ export  {
     addBoardGames,
     gameEdit,
     deleteBoardGames,
-    registerControl,
-    loginControl,
+    /* registerControl,
+    loginControl, */
     changePassControl
 }

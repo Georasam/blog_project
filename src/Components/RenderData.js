@@ -1,13 +1,13 @@
 
 import React from 'react'
-import { Button } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
 import Col from 'react-bootstrap/Col';
 
 
 
-function RenderData({data, entries, assets}) {
+function RenderData({data}) {
   const { setAuth, persist} = useAuth();
   return ( 
     <div className="body-data">
@@ -27,8 +27,8 @@ function RenderData({data, entries, assets}) {
                  {/*  <Link to={`/blog_project/${entry.fields.title.toLowerCase()}`}>
                   <Button  variant='success' className="btn btn-primary">Read more</Button>
                   </Link> */}
-                  <Link  disabled={!setAuth ? true : false} to={`/blog_project/edit/${entry.id}`}>
-                  <button  variant='success' className="btn btn-primary">edit</button>
+                  <Link  to={`/blog_project/edit/${entry.id}`}>
+                  <button disabled={!setAuth  && !persist? false : true} variant='success' className="btn btn-primary">edit</button>
                   </Link>
                 </div>
               </div>
@@ -45,5 +45,3 @@ function RenderData({data, entries, assets}) {
 
 export default RenderData
 
-//Entries Id: .fields.image.sys.id
-//Assets Id: .sys.id

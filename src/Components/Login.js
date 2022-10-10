@@ -1,5 +1,5 @@
-import { SettingsSuggestRounded } from "@mui/icons-material";
-import { useRef, useState, useEffect, useContext } from "react";
+/* import { SettingsSuggestRounded } from "@mui/icons-material"; */
+import { useRef, useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 

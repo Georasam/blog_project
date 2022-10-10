@@ -2,7 +2,7 @@ import "./App.css";
 
 import { useEffect, useState } from "react";
 import RenderData from "./Components/RenderData";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer";
 import GameDetails from "./Components/GameDetails";
 import NavScroll from "./Components/NavScroll";
@@ -16,7 +16,6 @@ import ChangePass from "./Components/Changepass";
 import Layout from "./Components/Layout";
 import Missing from "./Components/Missing";
 import RequireAuth from "./Components/RequireAuth";
-import useAuth from "./hooks/useAuth";
 import PersistLogin from "./Components/PersistLogin";
 import Unauthorized from "./Components/Unauthorized";
 import useLogout from "./hooks/useLogout";
@@ -26,52 +25,50 @@ import {
   addBoardGames,
   gameEdit,
   deleteBoardGames,
-  registerControl,
-  loginControl,
+  /* registerControl, */
+  /* loginControl, */
   changePassControl,
 } from "./Controllers/api";
+
+
+
 const ROLES = {
   User: 2001,
-
   Admin: 5150,
 };
+
+
 function App() {
   const [data, setData] = useState();
-  const [entries, setEntries] = useState(); //rich text
-  const [assets, setAssets] = useState(); //images
   const [searchQuery, setSearchQuery] = useState(); //searchquery
   const [searchResults, setSearchResults] = useState(); //searchresults
 
-  /* const [loadingA, setLoadingA] = useState(true);
-  const [errorA, setErrorA] = useState(null); */
+ 
 
-  async function loadData() {
-    const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&content_type=${process.env.REACT_APP_CONTENTTYPE}&metadata.tags.sys.id[in]=boardGames`;
-    const response = await fetch(url);
-    const result = await response.json();
-    console.log(result);
-    setEntries(result.items); //rich test
-    setAssets(result.includes.Asset); //images
-  }
 
-  async function registerUsername(element) {
+
+//REGISTER USERNAME FUNCTION 
+ /*  async function registerUsername(element) {
     const games = await registerControl(element);
     setData(games);
-  }
+  } */
 
+  //CHANGE PASSWORD (NOT)
   async function changePassElement(element) {
     const games = await changePassControl(element);
     setData(games);
   }
 
-  async function loginUsername(element) {
+  /* async function loginUsername(element) {
     const games = await loginControl(element);
     setData(games);
-  }
+  } */
 
   async function getGames() {
     const games = await getBoardGames();
     setData(games);
+
+
     /* setData((prev) => {
       return { ...prev, games };
     }); */
@@ -112,9 +109,11 @@ function App() {
   useEffect(() => {
     getGames();
   }, []);
-  const logout = useLogout()
-  const { auth } = useAuth();
+  const logout = useLogout();
+
+
   
+
   async function search() {
     const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&query=${searchQuery}`;
     const response = await fetch(url);
@@ -123,14 +122,10 @@ function App() {
     setSearchResults(result.items); //rich test
   }
 
-
-
-  const signOut = async()=>{
-
-
-    await logout()
+  const signOut = async () => {
+    await logout();
     /* navigate() */
-  }
+  };
   if (!data) {
     return <div>Data is Loading...</div>;
   }
@@ -154,7 +149,7 @@ function App() {
             exact
             path="/blog_project"
             element={
-              <RenderData data={data} entries={entries} assets={assets} />
+              <RenderData data={data}  />
             }
           />
 
@@ -162,7 +157,7 @@ function App() {
 
           <Route
             path="/blog_project/login"
-            element={<Login data={data} loginUsername={loginUsername} />}
+            element={<Login /* data={data} loginUsername={loginUsername} */ />}
           />
 
           <Route
@@ -171,7 +166,7 @@ function App() {
             element={
               <Search
                 search={search}
-                entries={entries}
+                
                 searchQuery={searchQuery}
                 searchResults={searchResults}
               />
@@ -180,17 +175,19 @@ function App() {
           <Route
             path="/blog_project/register"
             element={
-              <Register data={data} registerUsername={registerUsername} />
+              <Register /* data={data} registerUsername={registerUsername} */ />
             }
           />
-<Route path="/blog_project/unauthorized" element={<Unauthorized />} />
+          <Route path="/blog_project/unauthorized" element={<Unauthorized />} />
           {/* <Route
         exact
           path="/blog_project/:singleGameTitle"
           element={<GameDetails assets={assets} entries={entries} name="" />}
         ></Route> */}
           <Route element={<PersistLogin />}>
-            <Route element={<RequireAuth allowedRoles={[ROLES.Admin,ROLES.User]} />}>
+            <Route
+              element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}
+            >
               <Route
                 path="/blog_project/add"
                 element={<AddGame data={data} addGames={addGames} />}
