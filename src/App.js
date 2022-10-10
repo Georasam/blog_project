@@ -9,7 +9,6 @@ import NavScroll from "./Components/NavScroll";
 import Search from "./Components/Search";
 import AddGame from "./Components/AddGame";
 import EditPosts from "./Components/EditPosts";
-import Album from "./Components/Album"
 import ContactForm from "./Components/ContactForm"
 import AboutUs from "./Components/AboutUs"
 import Register from "./Components/Register";
@@ -175,17 +174,7 @@ function App() {
           path="/blog_project/add"
           element={<AddGame data={data} addGames={addGames} />}
         />
-        <Route
-          exact
-          path="/blog_project/edit/:gameid"
-          element={
-            <EditPosts
-              data={data}
-              updateGame={updateGame}
-              deleteGames={deleteGames}
-            />
-          }
-        />
+     
         
         <Route path="/" element={<Layout />}>
           <Route
