@@ -94,6 +94,11 @@ function App() {
     setSearchResults(result.items); //rich test
   }
 
+  const onClickHome = () => {
+    const homeUrl = "http://localhost:3000/blog_project"
+    window.location = homeUrl
+  }
+
 
   if (!data) {
     return <div>Data is Loading...</div>;
@@ -102,8 +107,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title_name">FANTASIA</h1>
-      <h4 className="title_description">The Board Game Blog</h4>
+      <h1 className="title_name" onClick={onClickHome}>FANTASIA</h1>
+      <h4 className="title_description" onClick={onClickHome}>The Board Game Blog</h4>
       <NavScroll
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
