@@ -10,6 +10,8 @@ import Search from "./Components/Search";
 import AddGame from "./Components/AddGame";
 import EditPosts from "./Components/EditPosts";
 import Album from "./Components/Album"
+import ContactForm from "./Components/ContactForm"
+import AboutUs from "./Components/AboutUs"
 import {
   getBoardGames,
   addBoardGames,
@@ -154,6 +156,16 @@ function App() {
             />
           }
         />
+        <Route
+          exact
+          path="/blog_project/contactform"
+          element={<ContactForm/>}
+        ></Route>
+        <Route
+          exact
+          path="/blog_project/aboutus"
+          element={<AboutUs/>}
+        ></Route>
       </Routes>
       <Footer />
     </div>

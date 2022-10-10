@@ -33,7 +33,7 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
             navbarScroll
           >
             <Nav.Link href="/blog_project">Home</Nav.Link>
-            <Nav.Link href="">About us</Nav.Link>
+            <Nav.Link href="/blog_project/aboutus">About us</Nav.Link>
             <NavDropdown title="Genre" id="navbarScrollingDropdown">
               <NavDropdown.Item href="">Roll and Move</NavDropdown.Item>
               <NavDropdown.Item href="">Cooperative</NavDropdown.Item>
@@ -41,7 +41,7 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
               <NavDropdown.Item href="">Party Games</NavDropdown.Item>
               <NavDropdown.Item href="">Strategic</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="">Contact</Nav.Link>
+            <Nav.Link href="/blog_project/contactform">Contact</Nav.Link>
           </Nav>
           <Form  className="d-flex">
             <Form.Control
