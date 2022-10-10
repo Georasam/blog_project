@@ -1,27 +1,39 @@
+import { useEffect, useState, React } from "react";
+import { useParams} from "react-router-dom";
+import ReactMarkdown from "react-markdown"
+import {getSingleBoardGame} from "../Controllers/api";
 
-import {useParams} from "react-router-dom"
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+function GameDetails () {
+    let { gameSlug } = useParams();
+    const [singleGameData, setSingleGameData] = useState();
+    console.log(gameSlug)
 
+    async function getSingleGame(){
+        const singleBoardGame = await getSingleBoardGame(gameSlug);
+        console.log(singleBoardGame)
+        setSingleGameData(singleBoardGame)
+    }
+    console.log(singleGameData)
 
-function GameDetails ({entries, assets}) {
-    let { singleGameTitle } = useParams();
-    
-      const gameEntry = entries.find(element => element.fields.title.toLowerCase() === singleGameTitle)
-      const gameImage = assets.find(element=> element.sys.id === gameEntry.fields.image.sys.id )
-      console.log(gameImage)
-        console.log("Entries", entries)
-        console.log("Assets", assets)
+    useEffect(() => {
+        getSingleGame();
+      }, []);
         
+      if (!singleGameData) {
+        return <div>Data is Loading...</div>;
+      } 
+
     return (
-      
         <div className="body-game-details">
-           <img className="game-detail-img"src={gameImage.fields.file.url}/>  
+           <img className="game-detail-img" src={singleGameData.imgUrl} alt="not loading"/>  
             <div>
-            <h1 className="game-detail-title">{gameEntry.fields.title}</h1>
-               
-            <p className="game-detail-content">{documentToReactComponents(gameEntry.fields.richText)}</p> 
+              <h1 className="game-detail-title">{singleGameData.title}</h1>
+              <p>Created by: <i>{singleGameData.author}</i></p>
+              <br/>
+              <ReactMarkdown>{singleGameData.richText}</ReactMarkdown>
+              <br/>
+              <p>Published by: <i>{singleGameData.publisher}</i></p>
             </div>
-            
         </div>
     )
 }

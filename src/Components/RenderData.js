@@ -14,7 +14,7 @@ function RenderData({data}) {
 
        <div className="row ">{data.map((entry,index)=>{
          /* const imageUrl = _getAssetUrl(entry.fields.image.sys.id) */
-         console.log(entry.imgUrl)
+         console.log(entry.slug)
           return(
           <Col className="main-content" md={4} key={index} >
               <div className="card main-back" style={{height: "100%"}}>
@@ -24,12 +24,15 @@ function RenderData({data}) {
                   <p className="card-text">{entry.rich_text}</p>
                   <p className="card-Author">Author(s): {entry.author}</p>
                   <p className="card-publisher"> Publisher: {entry.publisher}</p>
-                 {/*  <Link to={`/blog_project/${entry.fields.title.toLowerCase()}`}>
-                  <Button  variant='success' className="btn btn-primary">Read more</Button>
-                  </Link> */}
+                  <Link to={`/blog_project/${entry.slug}`}>
+                  <button  variant='success' className="btn btn-primary" style={{backgroundColor: "rgb(0,0,0)"}} >Read more</button>
+                  </Link>
                   <Link  to={`/blog_project/edit/${entry.id}`}>
                   <button disabled={!setAuth  && !persist? false : true} variant='success' className="btn btn-primary">edit</button>
                   </Link>
+                  {/* <Link to={`/blog_project/edit/${entry.id}`}>
+                  <Button  variant='success' className="btn btn-primary">edit</Button>
+                  </Link> */}
                 </div>
               </div>
             </Col>

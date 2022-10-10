@@ -20,7 +20,7 @@ console.log(auth)
     return <div key={index}>{element.title}</div>;
   });
 
-  /*  async function calledGame (){
+   /*  async function calledGame (){
        const foundgame= await data.find((game)=> game.id === gameid)
        return setFindGame(foundgame) 
     }
@@ -109,4 +109,4 @@ console.log(auth)
   );
 };
 
-export default EditPosts;
+export default EditPosts

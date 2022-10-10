@@ -3,6 +3,35 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+.App {
+  background-color: rgb(203, 214, 210);
+  color:rgb(15, 29, 42)
+}
+.card {
+  height: 50vh;
+  border: 2px solid rgba(58, 73, 68, 0.169);
+ 
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+ align-content: center;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+}
+
+.btn {
+  background-color:rgba(58, 73, 68, 0.169)
+}
+
+.title_name {
+  color: black;
+}
+.title_description {
+  color: black;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -30,7 +59,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #cf832c;
 }
 
 @keyframes App-logo-spin {
@@ -45,34 +74,28 @@
 .body-data{
   display: block;
   margin: 2rem 2rem;
-  width: 1200px;
+  width: 96.5%;
   
-}
-.card {
-  height: 50vh;
-  border: 2px solid rgba(110, 100, 94, 0.169);
- 
 }
 .main-content{
   margin-bottom: 3rem;
 }
-.card-body {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
- align-content: center;
-  justify-content: space-between;
+
+.title_name {
+  margin-top: 2rem;
 }
 .card-body img {
   align-self: center;
 }
 .card-title {
-
-  margin-bottom: 1rem;
+  color: black;
+  margin-bottom: 2rem;
 }
 .nav-body{
   margin: 2rem 2rem;
-  width: 1200px;
+  width: 96.5%;
+  background-color: #282c34;
+  color: #cf832c;
 }
 .body-game-details {
   margin:2rem 2rem;

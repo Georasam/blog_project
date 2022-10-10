@@ -9,6 +9,8 @@ import NavScroll from "./Components/NavScroll";
 import Search from "./Components/Search";
 import AddGame from "./Components/AddGame";
 import EditPosts from "./Components/EditPosts";
+import ContactForm from "./Components/ContactForm"
+import AboutUs from "./Components/AboutUs"
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Album from "./Components/Album";
@@ -74,6 +76,11 @@ function App() {
     }); */
   }
 
+ /*  async function getSingleGame(){
+    const singleGame = await getSingleBoardGame();
+    setSingleGame(singleGame)
+  } */
+
   async function updateGame(element) {
     const games = await gameEdit(element);
     setData(games);
@@ -122,6 +129,12 @@ function App() {
     setSearchResults(result.items); //rich test
   }
 
+  const onClickHome = () => {
+    const homeUrl = "http://localhost:3000/blog_project"
+    window.location = homeUrl
+  }
+
+
   const signOut = async () => {
     await logout();
     /* navigate() */
@@ -132,11 +145,12 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className="title_name" onClick={onClickHome}>FANTASIA</h1>
+      <h4 className="title_description" onClick={onClickHome}>The Board Game Blog</h4>
       <div>
         <button onClick={signOut}>Signout</button>
       </div>
-      <h1 className="title_name">FANTASIA</h1>
-      <h4 className="title_description">The Board Game Blog</h4>
+      
       <NavScroll
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -144,6 +158,24 @@ function App() {
       />
 
       <Routes>
+        {/* <Route path="/" element={<RenderData entries={entries} assets={assets}/>}></Route> */}
+        <Route exact path="/blog_project/:gameSlug" element={<GameDetails/>}></Route>
+        {/* <Route exact path="/search" element={<Search search={search} entries={entries} searchResults={searchResults} />} /> */}
+        <Route
+          exact
+          path="/blog_project"
+          element={<RenderData data={data}/>}
+        ></Route>
+        <Route
+          path="/blog_project/test"
+          element={<Album data={data}  />}
+        />
+        <Route
+          path="/blog_project/add"
+          element={<AddGame data={data} addGames={addGames} />}
+        />
+     
+        
         <Route path="/" element={<Layout />}>
           <Route
             exact
@@ -210,13 +242,33 @@ function App() {
         <Route
           path="/blog_project/change-password"
           element={
-            <ChangePass data={data} changePassElement={changePassElement} />
+            <Search
+              search={search}
+              data={data}
+              searchQuery={searchQuery}
+              searchResults={searchResults}
+            />
           }
         />
+        <Route
+          exact
+          path="/blog_project/contactform"
+          element={<ContactForm/>}
+        ></Route>
+        <Route
+          exact
+          path="/blog_project/aboutus"
+          element={<AboutUs/>}
+        ></Route>
+       {/*  <Route
+            <ChangePass data={data} changePassElement={changePassElement} />
+          
+        /> */}
         <Route path="*" element={<Missing />} />
       </Routes>
       <Footer />
     </div>
+    
   );
 }
 
