@@ -24,21 +24,12 @@ function RenderData({data}) {
                   <p className="card-text">{entry.rich_text}</p>
                   <p className="card-Author">Author(s): {entry.author}</p>
                   <p className="card-publisher"> Publisher: {entry.publisher}</p>
-<<<<<<< Updated upstream
                   <LinkContainer to={`/blog_project/view/${entry.slug}`}>
                   <Button  variant='success' className="btn btn-primary" style={{backgroundColor: "rgb(0,0,0)"}} >Read more</Button>
                   </LinkContainer>
                   <LinkContainer  to={`/blog_project/edit/${entry.id}`}>
                   <Button  hidden={auth.username?   false : true} variant='success' className="btn btn-primary">edit</Button>
                   </LinkContainer>
-=======
-                  <Link to={`/blog_project/${entry.slug}`}>
-                  <button  variant='success' className="btn btn-primary" style={{backgroundColor: "rgb(0,0,0)"}} >Read more</button>
-                  </Link>
-                  <Link  to={`/blog_project/edit/${entry.id}`}>
-                  <button display='none'/* {!setAuth  && !persist? false : true} */ variant='success' className="btn btn-primary">edit</button>
-                  </Link>
->>>>>>> Stashed changes
                   {/* <Link to={`/blog_project/edit/${entry.id}`}>
                   <Button  variant='success' className="btn btn-primary">edit</Button>
                   </Link> */}
