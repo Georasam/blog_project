@@ -34,7 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -57,5 +58,9 @@
   "devDependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
     "gh-pages": "^4.0.0"
+  },
+  "engines": {
+    "npm": "8.11.0",
+    "node": "16.15.1"
   }
 }
