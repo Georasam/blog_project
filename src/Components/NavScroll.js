@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { LinkContainer } from 'react-router-bootstrap'
 import { Link } from "react-router-dom";
 
 function NavScroll({ search, setSearchQuery, searchQuery }) {
@@ -32,8 +33,13 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="/blog_project">Home</Nav.Link>
-            <Nav.Link href="/blog_project/aboutus">About us</Nav.Link>
+            <LinkContainer to="/blog_project">
+            <Nav.Link >Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/blog_project/aboutus">
+            <Nav.Link >About us</Nav.Link>
+            </LinkContainer>
+            
             <NavDropdown title="Genre" id="navbarScrollingDropdown">
               <NavDropdown.Item href="">Roll and Move</NavDropdown.Item>
               <NavDropdown.Item href="">Cooperative</NavDropdown.Item>
@@ -41,7 +47,10 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
               <NavDropdown.Item href="">Party Games</NavDropdown.Item>
               <NavDropdown.Item href="">Strategic</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/blog_project/contactform">Contact</Nav.Link>
+            <LinkContainer to="/blog_project/contactform">
+            <Nav.Link >Contact</Nav.Link>
+            </LinkContainer>
+            
           </Nav>
           <Form  className="d-flex">
             <Form.Control

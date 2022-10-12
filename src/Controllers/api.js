@@ -57,12 +57,13 @@ async function registerControl( {username, password} ) {
 
 
 //CHANGE PASSWORD>>>>>>>>>>>>>>>>>>
-async function changePassControl({password}){
+async function changePassControl({password,accessToken,roles}){
 
     const response = await fetch( apiUrl + '/api/change-password', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + accessToken
         },
         body: JSON.stringify({
             newPassword: password,

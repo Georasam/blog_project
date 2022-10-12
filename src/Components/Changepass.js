@@ -1,17 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
-
+import useAuth from "../hooks/useAuth";
 
 
 const ChangePass = ({changePassElement}) => {
-
+  const { auth } = useAuth();
 const[password,setPassword]= useState()
 const[username, setUsername]= useState()
 
 function handleChange(event){
     event.preventDefault()
     changePassElement({
-    
+      accessToken:auth.accessToken,
+      roles: auth.roles ,
     password: password
 })
 }

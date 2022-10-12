@@ -1,20 +1,20 @@
 
 import React from 'react'
-
+import { LinkContainer } from 'react-router-bootstrap'
 import { Link } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
 import Col from 'react-bootstrap/Col';
+import Button from "react-bootstrap/Button";
 
 
 
 function RenderData({data}) {
-  const { setAuth, persist} = useAuth();
+  const { auth, persist} = useAuth();
+  console.log(auth,persist)
   return ( 
     <div className="body-data">
 
-       <div className="row ">{data.map((entry,index)=>{
-         /* const imageUrl = _getAssetUrl(entry.fields.image.sys.id) */
-         console.log(entry.slug)
+       <div className="row ">{data.map((entry,index)=>{    
           return(
           <Col className="main-content" md={4} key={index} >
               <div className="card main-back" style={{height: "100%"}}>
@@ -24,12 +24,12 @@ function RenderData({data}) {
                   <p className="card-text">{entry.rich_text}</p>
                   <p className="card-Author">Author(s): {entry.author}</p>
                   <p className="card-publisher"> Publisher: {entry.publisher}</p>
-                  <Link to={`/blog_project/${entry.slug}`}>
-                  <button  variant='success' className="btn btn-primary" style={{backgroundColor: "rgb(0,0,0)"}} >Read more</button>
-                  </Link>
-                  <Link  to={`/blog_project/edit/${entry.id}`}>
-                  <button disabled={!setAuth  && !persist? false : true} variant='success' className="btn btn-primary">edit</button>
-                  </Link>
+                  <LinkContainer to={`/blog_project/view/${entry.slug}`}>
+                  <Button  variant='success' className="btn btn-primary" style={{backgroundColor: "rgb(0,0,0)"}} >Read more</Button>
+                  </LinkContainer>
+                  <LinkContainer  to={`/blog_project/edit/${entry.id}`}>
+                  <Button  hidden={auth.username?   false : true} variant='success' className="btn btn-primary">edit</Button>
+                  </LinkContainer>
                   {/* <Link to={`/blog_project/edit/${entry.id}`}>
                   <Button  variant='success' className="btn btn-primary">edit</Button>
                   </Link> */}

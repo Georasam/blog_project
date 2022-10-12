@@ -1,5 +1,6 @@
 import "./App.css";
-
+import React from "react";
+import SessionTimeout from "./Components/SessionTimeout";
 import { useEffect, useState } from "react";
 import RenderData from "./Components/RenderData";
 import { Routes, Route } from "react-router-dom";
@@ -9,8 +10,8 @@ import NavScroll from "./Components/NavScroll";
 import Search from "./Components/Search";
 import AddGame from "./Components/AddGame";
 import EditPosts from "./Components/EditPosts";
-import ContactForm from "./Components/ContactForm"
-import AboutUs from "./Components/AboutUs"
+import ContactForm from "./Components/ContactForm";
+import AboutUs from "./Components/AboutUs";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Album from "./Components/Album";
@@ -21,6 +22,8 @@ import RequireAuth from "./Components/RequireAuth";
 import PersistLogin from "./Components/PersistLogin";
 import Unauthorized from "./Components/Unauthorized";
 import useLogout from "./hooks/useLogout";
+import useAuth from "./hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 import {
   getBoardGames,
@@ -32,25 +35,20 @@ import {
   changePassControl,
 } from "./Controllers/api";
 
-
-
 const ROLES = {
   User: 2001,
   Admin: 5150,
 };
 
-
 function App() {
   const [data, setData] = useState();
   const [searchQuery, setSearchQuery] = useState(); //searchquery
   const [searchResults, setSearchResults] = useState(); //searchresults
+  const { auth } = useAuth();
+  const navigate = useNavigate();
 
- 
-
-
-
-//REGISTER USERNAME FUNCTION 
- /*  async function registerUsername(element) {
+  //REGISTER USERNAME FUNCTION
+  /*  async function registerUsername(element) {
     const games = await registerControl(element);
     setData(games);
   } */
@@ -70,13 +68,12 @@ function App() {
     const games = await getBoardGames();
     setData(games);
 
-
     /* setData((prev) => {
       return { ...prev, games };
     }); */
   }
 
- /*  async function getSingleGame(){
+  /*  async function getSingleGame(){
     const singleGame = await getSingleBoardGame();
     setSingleGame(singleGame)
   } */
@@ -116,10 +113,9 @@ function App() {
   useEffect(() => {
     getGames();
   }, []);
+  console.log("beforlog");
   const logout = useLogout();
-
-
-  
+  console.log(logout); 
 
   async function search() {
     const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&query=${searchQuery}`;
@@ -130,14 +126,23 @@ function App() {
   }
 
   const onClickHome = () => {
-    const homeUrl = "http://localhost:3000/blog_project"
-    window.location = homeUrl
-  }
-
+    const homeUrl = "http://localhost:3000/blog_project";
+    window.location = homeUrl;
+  };
 
   const signOut = async () => {
     await logout();
-    /* navigate() */
+  };
+  const handleLogButton = async (e) => {
+    console.log(auth.accessToken);
+    if (!auth.accessToken) {
+      console.log("AAAAAA");
+      navigate("/blog_project/login");
+    } else {
+      console.log("bbbbbbbbb");
+      await logout();
+      /* navigate("/blog_project") */
+    }
   };
   if (!data) {
     return <div>Data is Loading...</div>;
@@ -145,12 +150,19 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title_name" onClick={onClickHome}>FANTASIA</h1>
-      <h4 className="title_description" onClick={onClickHome}>The Board Game Blog</h4>
+     
+      <h1 className="title_name" onClick={onClickHome}>
+        FANTASIA
+      </h1>
+      <h4 className="title_description" onClick={onClickHome}>
+        The Board Game Blog
+      </h4>
       <div>
-        <button onClick={signOut}>Signout</button>
+        <a href="" onClick={handleLogButton}>
+          {!auth.username ? <>Sign in</> : <>Sign out</>}
+        </a>
       </div>
-      
+
       <NavScroll
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -158,31 +170,27 @@ function App() {
       />
 
       <Routes>
-        {/* <Route path="/" element={<RenderData entries={entries} assets={assets}/>}></Route> */}
-        <Route exact path="/blog_project/:gameSlug" element={<GameDetails/>}></Route>
-        {/* <Route exact path="/search" element={<Search search={search} entries={entries} searchResults={searchResults} />} /> */}
         <Route
           exact
           path="/blog_project"
-          element={<RenderData data={data}/>}
-        ></Route>
+          element={<RenderData data={data} />}
+        />
         <Route
+          exact
           path="/blog_project/test"
-          element={<Album data={data}  />}
+          element={<Album data={data} />}
         />
         <Route
-          path="/blog_project/add"
-          element={<AddGame data={data} addGames={addGames} />}
+          exact
+          path="/blog_project/view/:gameSlug"
+          element={<GameDetails />}
         />
-     
-        
+
         <Route path="/" element={<Layout />}>
           <Route
             exact
             path="/blog_project"
-            element={
-              <RenderData data={data}  />
-            }
+            element={<RenderData data={data} />}
           />
 
           <Route path="/blog_project/test" element={<Album data={data} />} />
@@ -198,29 +206,33 @@ function App() {
             element={
               <Search
                 search={search}
-                
                 searchQuery={searchQuery}
                 searchResults={searchResults}
               />
             }
           />
+
           <Route
-            path="/blog_project/register"
-            element={
-              <Register /* data={data} registerUsername={registerUsername} */ />
-            }
+            exact
+            path="/blog_project/unauthorized"
+            element={<Unauthorized />}
           />
-          <Route path="/blog_project/unauthorized" element={<Unauthorized />} />
-          {/* <Route
-        exact
-          path="/blog_project/:singleGameTitle"
-          element={<GameDetails assets={assets} entries={entries} name="" />}
-        ></Route> */}
+
           <Route element={<PersistLogin />}>
             <Route
               element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}
             >
               <Route
+                exact
+                path="/blog_project/register"
+                element={
+                  <Register /* data={data} registerUsername={registerUsername} */
+                  />
+                }
+              />
+
+              <Route
+                exact
                 path="/blog_project/add"
                 element={<AddGame data={data} addGames={addGames} />}
               />
@@ -236,39 +248,39 @@ function App() {
                   />
                 }
               />
+              <Route
+                exact
+                path="/blog_project/change-password"
+                element={
+                  <ChangePass
+                    search={search}
+                    data={data}
+                    searchQuery={searchQuery}
+                    searchResults={searchResults}
+                  />
+                }
+              />
             </Route>
           </Route>
         </Route>
-        <Route
-          path="/blog_project/change-password"
-          element={
-            <Search
-              search={search}
-              data={data}
-              searchQuery={searchQuery}
-              searchResults={searchResults}
-            />
-          }
-        />
+
         <Route
           exact
           path="/blog_project/contactform"
-          element={<ContactForm/>}
-        ></Route>
-        <Route
-          exact
-          path="/blog_project/aboutus"
-          element={<AboutUs/>}
-        ></Route>
-       {/*  <Route
+          element={<ContactForm />}
+        />
+        <Route exact path="/blog_project/aboutus" element={<AboutUs />} />
+        {/*  <Route
             <ChangePass data={data} changePassElement={changePassElement} />
           
         /> */}
+
         <Route path="*" element={<Missing />} />
       </Routes>
+
       <Footer />
+      
     </div>
-    
   );
 }
 

@@ -7,7 +7,7 @@ import axios from "../Controllers/axios";
 const LOGIN_URL = "/api/login";
 
 const Login = () => {
-  const { setAuth, persist, setPersist } = useAuth();
+  const { setAuth, persist, setPersist} = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,8 +44,16 @@ const Login = () => {
       //console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
-      console.log(accessToken);
-      setAuth({ username, password, roles, accessToken });
+      const expiresIn= response?.data?.expiresIn
+      const expirationTime =  new Date(new Date().getTime()+ +expiresIn * 100)
+      
+      console.log(expirationTime.toISOString());
+      /* setAuth({ username, password, roles, accessToken }); */
+      setAuth((prevState) => ({
+        ...prevState,
+        username, password, roles, accessToken ,expirationTime,
+        isAuthenticated: true,
+      }));
       setUser("");
       setPwd("");
       navigate(from, { replace: true });
