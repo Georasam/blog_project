@@ -1,26 +1,24 @@
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
+const EditPosts = ({ data, updateGame, deleteGames }) => {
+  const { auth } = useAuth();
+  let { gameid } = useParams();
+  const foundgame = data.find((game) => game.id === gameid);
+  console.log(foundgame);
+  const history = useNavigate();
+  const [newTitle, setNewTitle] = useState();
+  const [newPublisher, setNewPublisher] = useState();
+  const [newAuthor, setNewAuthor] = useState();
+  const [newImgUrl, setNewImgUrl] = useState();
+  const [newText, setNewText] = useState();
 
-
-const EditPosts = ({data, updateGame,deleteGames}) => {
-    
-    let { gameid } = useParams();
-    const foundgame= data.find((game)=> game.id === gameid)
-    console.log(foundgame)
-    const history = useNavigate();
-    const [newTitle, setNewTitle] = useState();
-    const [newPublisher, setNewPublisher] = useState();
-    const [newAuthor, setNewAuthor] = useState();
-    const [newImgUrl, setNewImgUrl] = useState();
-    const [newText, setNewText] = useState();
-    
-
-   console.log(newImgUrl)
-    
-    /* const gameTitles = data.map((element, index) => {
-      return <div key={index}>{element.title}</div>;
-    }); */
+  
+console.log(auth)
+  const gameTitles = data.map((element, index) => {
+    return <div key={index}>{element.title}</div>;
+  });
 
    /*  async function calledGame (){
        const foundgame= await data.find((game)=> game.id === gameid)
@@ -30,7 +28,9 @@ const EditPosts = ({data, updateGame,deleteGames}) => {
     calledGame()
     console.log(findGame) */
   function handleDeleteGame() {
-    deleteGames({ id: gameid });
+    deleteGames({ id: gameid,
+      accessToken:auth.accessToken,
+      roles: auth.roles });
     history("/blog_project");
   }
 
@@ -42,6 +42,8 @@ const EditPosts = ({data, updateGame,deleteGames}) => {
       imgUrl: newImgUrl,
       richText: newText,
       publisher: newPublisher,
+      accessToken:auth.accessToken,
+      roles: auth.roles
     });
   }
   console.log(data);
