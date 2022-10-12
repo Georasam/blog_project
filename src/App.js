@@ -170,6 +170,7 @@ function App() {
       />
 
       <Routes>
+      <Route path="/" element={<Layout />}>
         <Route
           exact
           path="/blog_project"
@@ -186,7 +187,7 @@ function App() {
           element={<GameDetails />}
         />
 
-        <Route path="/" element={<Layout />}>
+        
           <Route
             exact
             path="/blog_project"
