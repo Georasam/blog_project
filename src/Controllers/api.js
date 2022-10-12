@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:5050"
+const apiUrl = "https://boardgame-backend-mongodb.herokuapp.com"
 //testt
 
 
