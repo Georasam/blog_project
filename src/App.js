@@ -170,23 +170,24 @@ function App() {
       />
 
       <Routes>
-        <Route
+        {/* <Route
           exact
           path="/blog_project"
           element={<RenderData data={data} />}
-        />
-        <Route
+        /> */}
+        {/* <Route
           exact
           path="/blog_project/test"
           element={<Album data={data} />}
-        />
+        /> */}
+        
+        <Route path="/" element={<Layout />}>
         <Route
           exact
           path="/blog_project/view/:gameSlug"
           element={<GameDetails />}
         />
 
-        <Route path="/" element={<Layout />}>
           <Route
             exact
             path="/blog_project"
@@ -253,10 +254,7 @@ function App() {
                 path="/blog_project/change-password"
                 element={
                   <ChangePass
-                    search={search}
-                    data={data}
-                    searchQuery={searchQuery}
-                    searchResults={searchResults}
+                   
                   />
                 }
               />
