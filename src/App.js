@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import SessionTimeout from "./Components/SessionTimeout";
+
 import { useEffect, useState } from "react";
 import RenderData from "./Components/RenderData";
 import { Routes, Route } from "react-router-dom";
