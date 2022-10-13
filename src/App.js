@@ -169,7 +169,7 @@ function App() {
         search={search}
       />
 
-      <Routes>
+      
         {/* <Route
           exact
           path="/blog_project"
@@ -274,7 +274,7 @@ function App() {
         /> */}
 
         <Route path="*" element={<Missing />} />
-      </Routes>
+      
 
       <Footer />
       
