@@ -7,7 +7,7 @@ const calculateRemainingTime= (expirationTime)=>{
 // inside login handler
 
 const remainingTime = calculateRemainingTime(expirationTime)
-setTimeout(logoutHandler, remainingTime);
+setTimeout(, remainingTime);
 
 
 
