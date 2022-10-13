@@ -24,12 +24,14 @@ function RenderData({data}) {
                   <p className="card-text">{entry.rich_text}</p>
                   <p className="card-Author">Author(s): {entry.author}</p>
                   <p className="card-publisher"> Publisher: {entry.publisher}</p>
+                  <div className='render-button-cont'>
                   <LinkContainer to={`/view/${entry.slug}`}>
-                  <Button  variant='success' className="btn btn-primary" style={{backgroundColor: "rgb(0,0,0)"}} >Read more</Button>
+                  <Button  variant="outline-secondary" className="rend-btn-elmnt"  >Read more</Button>
                   </LinkContainer>
                   <LinkContainer  to={`/edit/${entry.id}`}>
-                  <Button  hidden={auth.username?   false : true} variant='success' className="btn btn-primary">edit</Button>
+                  <Button  hidden={auth.username? false : true} variant='outline-secondary' className="rend-btn-elmnt">edit</Button>
                   </LinkContainer>
+                  </div>
                   {/* <Link to={`/blog_project/edit/${entry.id}`}>
                   <Button  variant='success' className="btn btn-primary">edit</Button>
                   </Link> */}
