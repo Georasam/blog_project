@@ -4,8 +4,8 @@
 }
 
 .App {
-  background-color: rgb(203, 214, 210);
-  color:rgb(15, 29, 42)
+  background-color:rgb(69,129,142);
+  color:#0f1d2a
 }
 .card {
   height: 50vh;
@@ -18,7 +18,8 @@
   text-align: center;
  align-content: center;
   justify-content: space-between;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(251, 250, 248);
+  border-radius: 3px;
 }
 
 .btn {
@@ -89,7 +90,7 @@
 }
 .card-title {
   color: black;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 .nav-body{
   margin: 2rem 2rem;
@@ -131,4 +132,14 @@
 .search-text-title{
   font-size: larger;
   padding-bottom: 2rem;
+}
+.render-button-cont{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 2rem 2rem 1rem 2rem;
+}
+.rend-btn-elmnt{
+  width: 20vh;
+  background-color:rgb(69,129,142)
 }
