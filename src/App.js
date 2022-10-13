@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import SessionTimeout from "./Components/SessionTimeout";
+
 import { useEffect, useState } from "react";
 import RenderData from "./Components/RenderData";
 import { Routes, Route } from "react-router-dom";
@@ -125,10 +125,10 @@ function App() {
     setSearchResults(result.items); //rich test
   }
 
-  const onClickHome = () => {
+  /* const onClickHome = () => {
     const homeUrl = "http://localhost:3000/blog_project";
     window.location = homeUrl;
-  };
+  }; */
 
   const signOut = async () => {
     await logout();
@@ -151,10 +151,10 @@ function App() {
   return (
     <div className="App">
      
-      <h1 className="title_name" onClick={onClickHome}>
+      <h1 className="title_name" /* onClick={onClickHome} */>
         FANTASIA
       </h1>
-      <h4 className="title_description" onClick={onClickHome}>
+      <h4 className="title_description" /* onClick={onClickHome} */>
         The Board Game Blog
       </h4>
       <div>
@@ -170,23 +170,24 @@ function App() {
       />
 
       <Routes>
-        <Route
+        {/* <Route
           exact
           path="/blog_project"
           element={<RenderData data={data} />}
-        />
-        <Route
+        /> */}
+        {/* <Route
           exact
           path="/blog_project/test"
           element={<Album data={data} />}
-        />
+        /> */}
+        
+        <Route path="/" element={<Layout />}>
         <Route
           exact
           path="/blog_project/view/:gameSlug"
           element={<GameDetails />}
         />
 
-        <Route path="/" element={<Layout />}>
           <Route
             exact
             path="/blog_project"
@@ -253,10 +254,7 @@ function App() {
                 path="/blog_project/change-password"
                 element={
                   <ChangePass
-                    search={search}
-                    data={data}
-                    searchQuery={searchQuery}
-                    searchResults={searchResults}
+                   
                   />
                 }
               />
