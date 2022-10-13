@@ -134,24 +134,30 @@ function App() {
       />
 
       <Routes>
+
+        {/* <Route
+
       <Route path="/" element={<Layout />}>
         <Route
+
           exact
           path="/blog_project"
           element={<RenderData data={data} />}
-        />
-        <Route
+        /> */}
+        {/* <Route
           exact
           path="/blog_project/test"
           element={<Album data={data} />}
-        />
+        /> */}
+        
+        <Route path="/" element={<Layout />}>
         <Route
           exact
           path="/blog_project/view/:gameSlug"
           element={<GameDetails />}
         />
 
-          
+
 
          
 
@@ -213,7 +219,9 @@ function App() {
                 exact
                 path="/blog_project/change-password"
                 element={
+
                   <ChangePass />
+
                 }
               />
             </Route>

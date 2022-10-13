@@ -1,6 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ed4b7cf4.css",
+
     "main.js": "/static/js/main.e89b4db5.js",
     "index.html": "/index.html",
     "main.ed4b7cf4.css.map": "/static/css/main.ed4b7cf4.css.map",
@@ -9,5 +10,6 @@
   "entrypoints": [
     "static/css/main.ed4b7cf4.css",
     "static/js/main.e89b4db5.js"
+
   ]
 }
