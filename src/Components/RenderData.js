@@ -29,7 +29,7 @@ function RenderData({data}) {
                   <Button  variant="outline-secondary" className="rend-btn-elmnt"  >Read more</Button>
                   </LinkContainer>
                   <LinkContainer  to={`/edit/${entry.id}`}>
-                  <Button  hidden={auth.username? false : true} variant='outline-secondary' className="rend-btn-elmnt">edit</Button>
+                  <Button  hidden={auth.accessToken? false : true} variant='outline-secondary' className="rend-btn-elmnt">edit</Button>
                   </LinkContainer>
                   </div>
                   {/* <Link to={`/blog_project/edit/${entry.id}`}>

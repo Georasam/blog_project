@@ -4,7 +4,7 @@ function Footer (){
   return (
 <footer className="bg-light text-center text-lg-start">
   
-  <div className="text-center p-3" style= {{backgroundColor: 'fff'}}>
+  <div className="footer-text p-3">
     <a className="text-dark" href="https://github.com/Georasam/blog_project.git">© 2022 Copyright: github.com/Georasam/blog_project.git</a>
   </div>
   

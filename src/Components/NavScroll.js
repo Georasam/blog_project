@@ -23,12 +23,12 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
   };
   return (
     <div className="nav-body">
-    <Navbar  bg="light" expand="lg">
+    <Navbar  className="nav-container" bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand href=""></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav
+          <Nav 
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
@@ -66,7 +66,8 @@ function NavScroll({ search, setSearchQuery, searchQuery }) {
                 type="submit"
                 onClick={search}
                 onKeyPress={pressEnter}
-                variant="outline-success"
+                variant="outline-secondary"
+                className="btn-navsc"
               >
                 Search
               </Button>
