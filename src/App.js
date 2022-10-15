@@ -125,10 +125,10 @@ function App() {
     setSearchResults(result.items); //rich test
   }
 
-  /* const onClickHome = () => {
-    const homeUrl = "http://localhost:3000/blog_project";
+  const onClickHome = () => {
+    const homeUrl = "http://localhost:3000";
     window.location = homeUrl;
-  }; */
+  };
 
   const signOut = async () => {
     await logout();
@@ -151,10 +151,10 @@ function App() {
   return (
     <div className="App">
      
-      <h1 className="title_name" /* onClick={onClickHome} */>
+      <h1 className="title_name" onClick={onClickHome}>
         FANTASIA
       </h1>
-      <h4 className="title_description" /* onClick={onClickHome} */>
+      <h4 className="title_description" onClick={onClickHome}>
         The Board Game Blog
       </h4>
       <div className="sign-in-cont">
