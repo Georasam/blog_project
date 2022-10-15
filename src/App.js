@@ -126,7 +126,7 @@ function App() {
   }
 
   const onClickHome = () => {
-    const homeUrl = "http://localhost:3000";
+    const homeUrl = "https://blog-project-psi.vercel.app";
     window.location = homeUrl;
   };
 
