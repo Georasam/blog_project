@@ -81,7 +81,7 @@ const Login = () => {
   }, [persist]);
 
   return (
-    <div className="login-container">
+    <div className="login-container  ">
       <h2>Login</h2>
       <p
         ref={errRef}

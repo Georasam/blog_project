@@ -3,7 +3,7 @@ function AboutUs (){
   return (
     //<AboutUs className="bg-light text-center text-lg-start">
   <div>
-<h1>About Us Page</h1>
+<h1>About Page</h1>
   <p>Some text about who we are and what we do.</p>
   <p>
 What is BoardGame?

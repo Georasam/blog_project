@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL ='http://localhost:5050' /* 'https://boardgame-backend-mongodb.herokuapp.com'; */
+const BASE_URL ='https://boardgame-backend-mongodb.herokuapp.com';
 
 export default axios.create({
     baseURL: BASE_URL
