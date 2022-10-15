@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 import axios from "../Controllers/axios";
 const LOGIN_URL = "/api/login";
@@ -80,7 +81,7 @@ const Login = () => {
   }, [persist]);
 
   return (
-    <div>
+    <div className="login-container  ">
       <h2>Login</h2>
       <p
         ref={errRef}
@@ -89,7 +90,7 @@ const Login = () => {
       >
         {errMsg}
       </p>
-      <form action="submit" id="reg-form" onSubmit={handleSubmit}>
+      <form className="login-form" action="submit" id="reg-form" onSubmit={handleSubmit}>
         <input
           ref={userRef}
           type="text"
@@ -105,7 +106,7 @@ const Login = () => {
           id="password"
           onChange={({ target }) => setPwd(target.value)}
         />
-        <button>Submit</button>
+        <button  variant="outline-*secondary">Submit</button>
         <div className="persistCheck">
           <input
             type="checkbox"
@@ -120,7 +121,7 @@ const Login = () => {
         Need an Account?
         <br />
         <span className="line">
-          <Link to="/register">Sign Up</Link>
+          <Link className="sign-in-btn "  to="/register">Sign Up</Link>
         </span>
       </p>
     </div>

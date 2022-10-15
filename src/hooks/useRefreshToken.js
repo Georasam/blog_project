@@ -5,6 +5,7 @@ const useRefreshToken = () => {
     const { auth,setAuth } = useAuth();
 
     const refresh = async () => {
+        console.log('inside of inside')
         const response = await axios.get('/api/refresh', {
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +19,9 @@ const useRefreshToken = () => {
             return {
                 ...prev,
                 roles: response.data.roles,
-                accessToken: response.data.accessToken
+                accessToken: response.data.accessToken,
+                isAuthenticated: true
+
             }
         });
         return response.data.accessToken;

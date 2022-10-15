@@ -4,9 +4,17 @@
 }
 
 .App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color:rgb(69,129,142);
-  color:#0f1d2a
+  color:#0f1d2a;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  height: 100%
 }
+
 .card {
   height: 50vh;
   border: 2px solid rgba(58, 73, 68, 0.169);
@@ -21,7 +29,9 @@
   background-color: rgb(251, 250, 248);
   border-radius: 3px;
 }
-
+.nav-pattern{
+  border-radius: 3px;
+}
 .btn {
   background-color:rgba(58, 73, 68, 0.169)
 }
@@ -32,7 +42,9 @@
 .title_description {
   color: black;
 }
-
+.nav-container{
+  border-radius: 3px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -93,10 +105,10 @@
   margin-bottom: 3rem;
 }
 .nav-body{
-  margin: 2rem 2rem;
+  
   width: 96.5%;
-  background-color: #282c34;
-  color: #cf832c;
+  border-radius: 3px;
+  color: #15110d;
 }
 .body-game-details {
   margin:2rem 2rem;
@@ -140,6 +152,29 @@
     margin: 2rem 2rem 1rem 2rem;
 }
 .rend-btn-elmnt{
-  width: 20vh;
+  width: 50vh;
+  margin: 2rem;
   background-color:rgb(69,129,142)
+}
+.rend-btn-elmnt:hover{
+  background-color:rgb(69,129,142)!important; 
+  
+}
+.btn-navsc:hover{
+  background-color:rgb(69,129,142)!important; 
+  
+}
+.sign-in-cont{
+  margin-bottom: 2rem;
+}
+.sign-in-btn{
+  color: azure;
+  text-decoration: none;
+}
+.footer-text{
+  background-color:rgb(69,129,142) ;
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
 }

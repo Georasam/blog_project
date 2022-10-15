@@ -113,9 +113,9 @@ function App() {
   useEffect(() => {
     getGames();
   }, []);
-  console.log("beforlog");
+  
   const logout = useLogout();
-  console.log(logout); 
+  
 
   async function search() {
     const url = `https://cdn.contentful.com//spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENVIRONMENT}/entries?access_token=${process.env.REACT_APP_ACCESS_TOKEN}&query=${searchQuery}`;
@@ -157,9 +157,9 @@ function App() {
       <h4 className="title_description" /* onClick={onClickHome} */>
         The Board Game Blog
       </h4>
-      <div>
-        <a href="" onClick={handleLogButton}>
-          {!auth.username ? <>Sign in</> : <>Sign out</>}
+      <div className="sign-in-cont">
+        <a className="sign-in-btn" href="" onClick={handleLogButton}>
+          {!auth.accessToken ? <>Sign in</> : <>Sign out</>}
         </a>
       </div>
 
@@ -188,11 +188,7 @@ function App() {
           element={<GameDetails />}
         />
 
-          <Route
-            exact
-            path="/"
-            element={<RenderData data={data} />}
-          />
+          
 
           <Route path="/test" element={<Album data={data} />} />
 
@@ -220,6 +216,11 @@ function App() {
           />
 
           <Route element={<PersistLogin />}>
+          <Route
+            
+            path="/"
+            element={<RenderData data={data} />}
+          />
             <Route
               element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.User]} />}
             >
